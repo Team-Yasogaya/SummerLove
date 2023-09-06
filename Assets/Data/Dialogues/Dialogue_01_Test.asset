@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
+  m_Name: Dialogue_01_Test
+  m_EditorClassIdentifier: 
+  _rootNode: {fileID: 2070274577511824314}
+  _nodes:
+  - {fileID: 2070274577511824314}
+  - {fileID: 8025031362141355079}
+  - {fileID: 1875289267819110798}
+--- !u!114 &1875289267819110798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 3703f947-1a71-4721-8d04-b1692a421021
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+    ut aliquip ex ea commodo consequat.
+  _children: []
+  Rect:
+    serializedVersion: 2
+    x: 531
+    y: 109
+    width: 200
+    height: 150
+--- !u!114 &2070274577511824314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 4374fa8e-6f66-4785-a747-82173aa68051
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  _children:
+  - b4b10ae4-d9b5-4897-a28c-d3541501ab63
+  Rect:
+    serializedVersion: 2
+    x: 9
+    y: 109
+    width: 200
+    height: 150
+--- !u!114 &8025031362141355079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: b4b10ae4-d9b5-4897-a28c-d3541501ab63
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  _children:
+  - 3703f947-1a71-4721-8d04-b1692a421021
+  Rect:
+    serializedVersion: 2
+    x: 281
+    y: 109
+    width: 200
+    height: 150
