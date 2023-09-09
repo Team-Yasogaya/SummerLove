@@ -54,8 +54,8 @@ namespace NoName
 
             SwitchState(FreeLookState);
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
         }
 
         protected override void Update()

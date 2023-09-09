@@ -30,8 +30,8 @@ MonoBehaviour:
   m_Name: 3703f947-1a71-4721-8d04-b1692a421021
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
-  _text: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-    ut aliquip ex ea commodo consequat.
+  _text: Ut enim ad minim veniam, quis nostrud rifle exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo policeman consequat.
   _children: []
   Rect:
     serializedVersion: 2
@@ -39,6 +39,13 @@ MonoBehaviour:
     y: 109
     width: 200
     height: 150
+  _dialogueClues:
+  - ID: WEAPON_0
+    Word: rifle
+    _type: 1
+  - ID: VICTIM_1
+    Word: policeman
+    _type: 2
 --- !u!114 &2070274577511824314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +68,7 @@ MonoBehaviour:
     y: 109
     width: 200
     height: 150
+  _dialogueClues: []
 --- !u!114 &8025031362141355079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,3 +91,4 @@ MonoBehaviour:
     y: 109
     width: 200
     height: 150
+  _dialogueClues: []

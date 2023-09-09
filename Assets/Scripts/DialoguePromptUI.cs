@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace NoName
 {
-    public class DialoguePromptUI : MonoBehaviour
+    public class DialoguePromptUI : MonoBehaviour, IPointerClickHandler
     {
         [Header("Prompt")]
         [SerializeField] private TextMeshProUGUI _dialogueText;
@@ -77,6 +79,9 @@ namespace NoName
                 // TODO
                 StopAllCoroutines();
                 _dialogueText.text = currentNode.Text;
+
+                BuildDialogueNodeClues();
+
                 finished = true;
             }
         }
@@ -96,7 +101,29 @@ namespace NoName
                 yield return new WaitForSeconds(1 / _typingSpeed);
             }
 
+            BuildDialogueNodeClues();
             finished = true;
+        }
+
+        private void BuildDialogueNodeClues()
+        {
+            foreach (var clue in currentNode.DialogueClues)
+            {
+                _dialogueText.text = _dialogueText.text.Replace(clue.Word, clue.GetHyperTextClue());
+            }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            var linkIndex = TMP_TextUtilities.FindIntersectingLink(_dialogueText, Mouse.current.position.ReadValue(), null);
+
+            if (linkIndex == -1) return;
+
+            var linkId = _dialogueText.textInfo.linkInfo[linkIndex].GetLinkID();
+
+            var clue = currentNode.GetDialogueClueByID(linkId);
+
+            Debug.Log("Clicked on the Clue: " + clue.Word + " with ID: " + clue.ID);
         }
     }
 }
