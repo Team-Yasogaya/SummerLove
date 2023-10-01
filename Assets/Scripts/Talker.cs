@@ -12,8 +12,7 @@ namespace NoName
         public void Talk()
         {
             GameUI.DialoguePrompt.gameObject.SetActive(true);
-            GameUI.DialoguePrompt.SetDialogue(_talkerDialogue, _name);
-            GameUI.DialoguePrompt.StartDialogue();
+            GameUI.DialoguePrompt.StartDialogue(_talkerDialogue, _name);
         }
     }
 }

@@ -11,11 +11,13 @@ namespace NoName
     {
         [SerializeField] private DialogueNode _rootNode;
         [SerializeField] private List<DialogueNode> _nodes = new ();
+        [SerializeField] private int _maxCollectableClues;
 
         private Dictionary<string, DialogueNode> _nodeLookup = new();
 
         public IEnumerable<DialogueNode> Nodes { get { return _nodes; } }
         public DialogueNode RootNode { get { return _rootNode; } }
+        public int MaxCollectableClues { get { return _maxCollectableClues; } }
      
 
         private void OnValidate()

@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -14,6 +12,9 @@ namespace NoName
         [SerializeField] private TextMeshProUGUI _dialogueText;
         [SerializeField] private TextMeshProUGUI _talkerName;
         [SerializeField] private float _typingSpeed;
+
+        [Header("Clues")]
+        [SerializeField] private TextMeshProUGUI _cluesInkText;
 
         private Dialogue dialogue;
         private string talkerName;
@@ -30,20 +31,40 @@ namespace NoName
             
         }
 
-        public void SetDialogue(Dialogue dialogue, string talkerName)
+        public void StartDialogue(Dialogue dialogue, string talkerName)
         {
             this.dialogue = dialogue;
             this.talkerName = talkerName;
-        }
 
-        public void StartDialogue()
-        {
             InputManager.Instance.DisablePlayerControls();
+
+            DialogueHistory.Instance.AddDialogueToHistory(dialogue, talkerName);
+
+            _cluesInkText.text = dialogue.MaxCollectableClues.ToString();
 
             currentNode = dialogue.RootNode;
             SetCharacterText(talkerName);
             _dialogueText.text = string.Empty;
             StartTypingLine();
+
+            InputManager.Instance.ConfirmEvent += OnConfirm;
+        }
+
+        public void ReloadDialogueFromHistory(Dialogue dialogue)
+        {
+            DialogueHistory.DialogueRecord dialogueRecord = DialogueHistory.Instance.GetRecordByDialogue(dialogue);
+            this.talkerName = dialogueRecord.talker;
+            this.dialogue = dialogue;
+
+            InputManager.Instance.DisablePlayerControls();
+
+            UpdateCluesInkCounter();
+
+            currentNode = dialogue.RootNode;
+            SetCharacterText(talkerName);
+            _dialogueText.text = string.Empty;
+            StartTypingLine();
+
             InputManager.Instance.ConfirmEvent += OnConfirm;
         }
 
@@ -77,7 +98,7 @@ namespace NoName
             else
             {
                 // TODO
-                StopAllCoroutines();
+                StopCoroutine(typingRoutine);
                 _dialogueText.text = currentNode.Text;
 
                 BuildDialogueNodeClues();
@@ -124,6 +145,24 @@ namespace NoName
             var clue = currentNode.GetDialogueClueByID(linkId);
 
             Debug.Log("Clicked on the Clue: " + clue.Word + " with ID: " + clue.ID);
+            CollectClue(clue);
+        }
+
+        private void UpdateCluesInkCounter()
+        {
+            DialogueHistory.DialogueRecord record = DialogueHistory.Instance.GetRecordByDialogue(dialogue);
+
+            _cluesInkText.text = (dialogue.MaxCollectableClues - record.collectedClues.Count).ToString();
+        }
+
+        private void CollectClue(DialogueNode.DialogueClue clue)
+        {
+            // PLAY COLLECTING ANIMATION
+            // DISABLE CLUE CLICK 
+
+            DialogueHistory.Instance.AddCollectedClueToDialogue(dialogue, clue);
+
+            UpdateCluesInkCounter();
         }
     }
 }
