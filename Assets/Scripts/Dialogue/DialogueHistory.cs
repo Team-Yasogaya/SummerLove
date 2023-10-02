@@ -7,14 +7,23 @@ namespace NoName {
     {
         public static DialogueHistory Instance;
 
+        [System.Serializable]
         public class DialogueRecord
         {
             public Dialogue dialogue;
             public string talker;
             public List<DialogueNode.DialogueClue> collectedClues;
+
+            //public bool AllCluesCollected
+            //{
+            //    get
+            //    {
+            //        return collectedClues.
+            //    }
+            //}
         }
 
-        private List<DialogueRecord> _registeredDialogues;
+        [SerializeField] private List<DialogueRecord> _registeredDialogues;
         private Dictionary<Dialogue, DialogueRecord> _cachedDialogues;
 
         public List<DialogueRecord> RegisteredDialogues 
@@ -60,7 +69,6 @@ namespace NoName {
         {
             if (GetRecordByDialogue(dialogue) != null)
             {
-                Debug.Log("Double insert error of the same Dialogue: " + dialogue);
                 return;
             }
 
@@ -87,6 +95,8 @@ namespace NoName {
 
         public void RemoveCollectedClueFromOwnerDialogue(DialogueNode.DialogueClue clue) 
         {
+            Debug.Log("Remove Collected Clue Invoked");
+
             foreach (var record in RegisteredDialogues) 
             {
                 if (record.collectedClues.Contains(clue))

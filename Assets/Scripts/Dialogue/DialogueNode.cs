@@ -66,7 +66,7 @@ namespace NoName
             }
 
             public string GetDisabledHyperTextClue() {
-                return "<color=gray>" + Word + "</color>";
+                return "<color=grey>" + Word + "</color>";
             }
         }
 

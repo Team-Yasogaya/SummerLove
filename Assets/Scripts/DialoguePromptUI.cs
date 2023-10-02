@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace NoName
 {
-    public class DialoguePromptUI : MonoBehaviour, IPointerClickHandler
+    public class DialoguePromptUI : BaseMenuUI, IPointerClickHandler
     {
         [Header("Prompt")]
         [SerializeField] private TextMeshProUGUI _dialogueText;
@@ -36,7 +36,7 @@ namespace NoName
             this.dialogue = dialogue;
             this.talkerName = talkerName;
 
-            InputManager.Instance.DisablePlayerControls();
+            Open();
 
             DialogueHistory.Instance.AddDialogueToHistory(dialogue, talkerName);
 
@@ -56,7 +56,7 @@ namespace NoName
             this.talkerName = dialogueRecord.talker;
             this.dialogue = dialogue;
 
-            InputManager.Instance.DisablePlayerControls();
+            Open();
 
             UpdateCluesInkCounter();
 
@@ -70,9 +70,7 @@ namespace NoName
 
         public void EndDialogue()
         {
-            InputManager.Instance.EnablePlayerControls();
-
-            gameObject.SetActive(false);
+            Close();
             InputManager.Instance.ConfirmEvent -= OnConfirm;
         }
 
@@ -128,17 +126,24 @@ namespace NoName
 
         private void BuildDialogueNodeClues()
         {
-            string buildText = currentNode.text;
+            string buildText = currentNode.Text;
 
             foreach (var clue in currentNode.DialogueClues)
             {
-                if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Contains(clue)) 
+                if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Count == dialogue.MaxCollectableClues)
                 {
-                    _dialogueText.text = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
+                    buildText = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
+                    _dialogueText.text = buildText;
+                }
+                else if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Contains(clue))
+                {
+                    buildText = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
+                    _dialogueText.text = buildText;
                 }
                 else 
                 {
-                    _dialogueText.text = buildText.Replace(clue.Word, clue.GetHyperTextClue());
+                    buildText = buildText.Replace(clue.Word, clue.GetHyperTextClue());
+                    _dialogueText.text = buildText;
                 }
             }
         }

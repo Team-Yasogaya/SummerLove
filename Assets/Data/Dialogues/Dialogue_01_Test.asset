@@ -36,7 +36,7 @@ MonoBehaviour:
   _children: []
   Rect:
     serializedVersion: 2
-    x: 531
+    x: 530
     y: 109
     width: 200
     height: 150
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: b4b10ae4-d9b5-4897-a28c-d3541501ab63
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
-  _text: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  _text: Sed do eiusmod tempor incididunt market ut labore et dolore magna aliqua.
   _children:
   - 3703f947-1a71-4721-8d04-b1692a421021
   Rect:
@@ -92,4 +92,7 @@ MonoBehaviour:
     y: 109
     width: 200
     height: 150
-  _dialogueClues: []
+  _dialogueClues:
+  - ID: CULPRIT_0
+    Word: market
+    _type: 4
