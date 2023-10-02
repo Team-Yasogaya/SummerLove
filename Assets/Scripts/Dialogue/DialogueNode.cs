@@ -64,6 +64,10 @@ namespace NoName
                         return null;
                 }
             }
+
+            public string GetDisabledHyperTextClue() {
+                return "<color=gray>" + Word + "</color>";
+            }
         }
 
         [Button]

@@ -40,7 +40,7 @@ namespace NoName
 
             DialogueHistory.Instance.AddDialogueToHistory(dialogue, talkerName);
 
-            _cluesInkText.text = dialogue.MaxCollectableClues.ToString();
+            UpdateCluesInkCounter();
 
             currentNode = dialogue.RootNode;
             SetCharacterText(talkerName);
@@ -97,8 +97,8 @@ namespace NoName
             }
             else
             {
-                // TODO
                 StopCoroutine(typingRoutine);
+                
                 _dialogueText.text = currentNode.Text;
 
                 BuildDialogueNodeClues();
@@ -128,9 +128,18 @@ namespace NoName
 
         private void BuildDialogueNodeClues()
         {
+            string buildText = currentNode.text;
+
             foreach (var clue in currentNode.DialogueClues)
             {
-                _dialogueText.text = _dialogueText.text.Replace(clue.Word, clue.GetHyperTextClue());
+                if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Contains(clue)) 
+                {
+                    _dialogueText.text = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
+                }
+                else 
+                {
+                    _dialogueText.text = buildText.Replace(clue.Word, clue.GetHyperTextClue());
+                }
             }
         }
 
@@ -145,6 +154,7 @@ namespace NoName
             var clue = currentNode.GetDialogueClueByID(linkId);
 
             Debug.Log("Clicked on the Clue: " + clue.Word + " with ID: " + clue.ID);
+
             CollectClue(clue);
         }
 
@@ -158,11 +168,11 @@ namespace NoName
         private void CollectClue(DialogueNode.DialogueClue clue)
         {
             // PLAY COLLECTING ANIMATION
-            // DISABLE CLUE CLICK 
 
             DialogueHistory.Instance.AddCollectedClueToDialogue(dialogue, clue);
 
             UpdateCluesInkCounter();
+            BuildDialogueNodeClues();
         }
     }
 }

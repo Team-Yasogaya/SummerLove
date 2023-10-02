@@ -85,6 +85,20 @@ namespace NoName {
             GetRecordByDialogue(dialogue).collectedClues.Add(clue);
         }
 
+        public void RemoveCollectedClueFromOwnerDialogue(DialogueNode.DialogueClue clue) 
+        {
+            foreach (var record in RegisteredDialogues) 
+            {
+                if (record.collectedClues.Contains(clue))
+                {
+                    record.collectedClues.Remove(clue);
+                    return;
+                }
+            }
+
+            Debug.Log("Clue not found in the history. This should not happens.");
+        }
+
         public DialogueRecord GetRecordByDialogue(Dialogue dialogue)
         {
             if (CachedDialogues.ContainsKey(dialogue))
