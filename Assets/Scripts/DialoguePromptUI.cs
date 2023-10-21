@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -17,7 +18,7 @@ namespace NoName
         [SerializeField] private TextMeshProUGUI _cluesInkText;
 
         private Dialogue dialogue;
-        private string talkerName;
+        private Talker talker;
 
         private Vector3 promptPosition;
 
@@ -26,24 +27,27 @@ namespace NoName
         private bool finished;
         private Coroutine typingRoutine;
 
+        // Dialogue Events
+        public Action OnDialogueFinished;
+
         private void Update()
         {
             
         }
 
-        public void StartDialogue(Dialogue dialogue, string talkerName)
+        public void StartDialogue(Dialogue dialogue, Talker talker)
         {
             this.dialogue = dialogue;
-            this.talkerName = talkerName;
+            this.talker = talker;
 
             Open();
 
-            DialogueHistory.Instance.AddDialogueToHistory(dialogue, talkerName);
+            DialogueHistory.Instance.AddDialogueToHistory(dialogue, talker);
 
             UpdateCluesInkCounter();
 
             currentNode = dialogue.RootNode;
-            SetCharacterText(talkerName);
+            SetCharacterText(talker.Name);
             _dialogueText.text = string.Empty;
             StartTypingLine();
 
@@ -53,7 +57,7 @@ namespace NoName
         public void ReloadDialogueFromHistory(Dialogue dialogue)
         {
             DialogueHistory.DialogueRecord dialogueRecord = DialogueHistory.Instance.GetRecordByDialogue(dialogue);
-            this.talkerName = dialogueRecord.talker;
+            this.talker = dialogueRecord.talker;
             this.dialogue = dialogue;
 
             Open();
@@ -61,7 +65,7 @@ namespace NoName
             UpdateCluesInkCounter();
 
             currentNode = dialogue.RootNode;
-            SetCharacterText(talkerName);
+            SetCharacterText(talker.Name);
             _dialogueText.text = string.Empty;
             StartTypingLine();
 
@@ -72,11 +76,14 @@ namespace NoName
         {
             Close();
             InputManager.Instance.ConfirmEvent -= OnConfirm;
+
+            OnDialogueFinished?.Invoke();
+            OnDialogueFinished = null;
         }
 
         public void SetCharacterText(string text)
         {
-            _talkerName.text = talkerName;
+            _talkerName.text = text;
         }
 
         public void OnConfirm()

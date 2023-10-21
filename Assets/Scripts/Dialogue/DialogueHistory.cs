@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace NoName {
         public class DialogueRecord
         {
             public Dialogue dialogue;
-            public string talker;
+            public Talker talker;
             public List<DialogueNode.DialogueClue> collectedClues;
 
             //public bool AllCluesCollected
@@ -24,7 +25,9 @@ namespace NoName {
         }
 
         [SerializeField] private List<DialogueRecord> _registeredDialogues;
+
         private Dictionary<Dialogue, DialogueRecord> _cachedDialogues;
+        private List<Talker> _talkerSupportList;
 
         public List<DialogueRecord> RegisteredDialogues 
         { 
@@ -65,7 +68,7 @@ namespace NoName {
             DontDestroyOnLoad(gameObject);
         }
 
-        public void AddDialogueToHistory(Dialogue dialogue, string talker)
+        public void AddDialogueToHistory(Dialogue dialogue, Talker talker)
         {
             if (GetRecordByDialogue(dialogue) != null)
             {
@@ -126,6 +129,35 @@ namespace NoName {
             }
 
             return null;
+        }
+
+        public IEnumerable<DialogueRecord> GetRecordsByTalker(Talker talker)
+        {
+            foreach (var record in RegisteredDialogues)
+            {
+                if (record.talker.Equals(talker))
+                {
+                    yield return record;
+                }
+            }
+        }
+
+        public IEnumerable<Talker> GetAllRegisteredTalkers()
+        {
+            if (_talkerSupportList == null)
+            {
+                _talkerSupportList = new();
+            }
+
+            _talkerSupportList.Clear();
+
+            foreach (var record in RegisteredDialogues)
+            {
+                if (_talkerSupportList.Contains(record.talker)) continue;
+
+                _talkerSupportList.Add(record.talker);
+                yield return record.talker;
+            }
         }
     }
 }

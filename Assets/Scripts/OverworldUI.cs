@@ -8,10 +8,12 @@ namespace NoName
     public class OverworldUI : MonoBehaviour
     {
         [SerializeField] private Button _deductionTableButton;
+        [SerializeField] private Button _dialogueLibraryButton;
 
         private void Awake()
         {
-            _deductionTableButton.onClick.AddListener(() => GameUI.OpenDeductionTable());
+            _deductionTableButton.onClick.AddListener(GameUI.OpenDeductionTable);
+            _dialogueLibraryButton.onClick.AddListener(GameUI.OpenDialogueLibrary);
         }
     }
 }

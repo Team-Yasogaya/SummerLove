@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,13 @@ namespace NoName
         [SerializeField] private DialoguePromptUI _dialoguePromptUI;
         [SerializeField] private ConfirmationModalUI _confirmationModalUI;
         [SerializeField] private DeductionTableUI _deductionTableUI;
+        [SerializeField] private DialogueLibraryUI _dialogueLibraryUI;
 
         public static OverworldUI OverworldUI { get { return Instance._overworldUI; } }
         public static DialoguePromptUI DialoguePrompt { get { return Instance._dialoguePromptUI; } }
         public static ConfirmationModalUI ConfirmationModal { get { return Instance._confirmationModalUI; } }
         public static DeductionTableUI DeductionTable { get { return Instance._deductionTableUI; } }
+        public static DialogueLibraryUI DialogueLibrary { get { return Instance._dialogueLibraryUI; } }
         public static List<BaseMenuUI> MenuStack { get { return Instance._menuStack; } }
 
         private List<BaseMenuUI> _menuStack;
@@ -46,6 +49,11 @@ namespace NoName
         public static void OpenDeductionTable()
         {
             DeductionTable.Open();
+        }
+
+        public static void OpenDialogueLibrary()
+        {
+            DialogueLibrary.Open();
         }
 
         #region Menu Stack

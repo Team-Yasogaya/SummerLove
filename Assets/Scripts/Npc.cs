@@ -8,9 +8,6 @@ namespace NoName
     {
         [Header("Interaction")]
         [SerializeField] private string _promptText;
-        [SerializeField] private Dialogue _npcDialogue;
-
-        public Dialogue Dialogue { get { return _npcDialogue; } }
 
     }
 }
