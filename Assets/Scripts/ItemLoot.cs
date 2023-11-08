@@ -21,10 +21,7 @@ namespace NoName
 
         public virtual void OnBeforeSerialize()
         {
-            if (string.IsNullOrEmpty(_itemId))
-            {
-                _itemId = System.Guid.NewGuid().ToString();
-            }
+            
         }
     }
 }

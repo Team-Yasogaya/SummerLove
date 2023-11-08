@@ -87,18 +87,6 @@ namespace NoName
             _inventorySlots.Remove(itemSlot);
         }
 
-        public IEnumerable<Item> GetEquipableItems()
-        {
-            foreach (var slot in _inventorySlots)
-            {
-                var item = slot.item as EquipableItem;
-
-                if (item == null) continue;
-
-                yield return item;
-            }
-        }
-
         public InventorySlot GetInventorySlotByItem(Item item)
         {
             foreach (var slot in _inventorySlots)
