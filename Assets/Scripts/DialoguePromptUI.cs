@@ -40,6 +40,8 @@ namespace NoName
             this.dialogue = dialogue;
             this.talker = talker;
 
+            dialogue.Initialize();
+
             Open();
 
             DialogueHistory.Instance.AddDialogueToHistory(dialogue, talker);

@@ -29,6 +29,16 @@ namespace NoName
                 _nodeLookup[node.name] = node;
             }
         }
+
+        public void Initialize()
+        {
+            _nodeLookup.Clear();
+
+            foreach (var node in _nodes)
+            {
+                _nodeLookup[node.name] = node;
+            }
+        }
         
         public IEnumerable<DialogueNode> ChildrenNodes(DialogueNode node)
         {
