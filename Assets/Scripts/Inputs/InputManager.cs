@@ -67,6 +67,11 @@ namespace NoName
             
         }
 
+        public void ResetInteract()
+        {
+            InteractEvent = null;
+        }
+
         public void OnInteract(InputAction.CallbackContext context)
         {
             if (!context.performed) return;

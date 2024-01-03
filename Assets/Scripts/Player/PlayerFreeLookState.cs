@@ -50,11 +50,7 @@ namespace NoName
 
         private void CheckForInteractables()
         {
-            if (closestInteractable != null)
-            {
-                InputManager.Instance.InteractEvent -= closestInteractable.Interact;
-                InputManager.Instance.InteractEvent -= FaceInteractable;
-            }
+            InputManager.Instance.ResetInteract();
 
             Collider[] collisions = Physics.OverlapSphere(_playerStateMachine.transform.position, _playerStateMachine.InteractionRange);
 
