@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NoName.Inventory
 {
-    public class InventoryManager : MonoBehaviour
+    public class InventoryManager : MonoBehaviour, IPredicateEvaluator
     {
         public static InventoryManager Instance { get; private set; }
 
@@ -76,6 +76,19 @@ namespace NoName.Inventory
             return true;
         }
 
+        private int FindItemInInventory(ItemSO item)
+        {
+            for (int i = 0; i < _slots.Length; i++)
+            {
+                if (_slots[i].item == item)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
         public void RemoveItem(ItemSO item, int quantity = 1)
         {
             int slotIndex = FindSlot(item);
@@ -124,6 +137,33 @@ namespace NoName.Inventory
             }
 
             return -1;
+        }
+
+        public void EnableEvaluator()
+        {
+            GameManager.AddConditionEvaluator(this);
+        }
+
+        public void DisableEvaluator()
+        {
+            GameManager.RemoveConditionEvaluator(this);
+        }
+
+        public bool? Evaluate(string predicateFunctionName, string[] parameters)
+        {
+            switch (predicateFunctionName)
+            {
+                case "HasInventoryItem":
+                    return HasInventoryItem(parameters[0]);
+
+                default:
+                    return null;
+            }
+        }
+
+        private bool HasInventoryItem(string itemId)
+        {
+            return FindItemInInventory(ItemSO.GetFromId(itemId)) >= 0;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NoName.Inventory
@@ -26,6 +27,32 @@ namespace NoName.Inventory
         public ItemSO ComplementaryItem => _complementaryItem;
         public ItemSO ResultingItem => _resultingItem;
         public int ResultingItemQuantity => _resultingItemQuantity;
+
+        private static Dictionary<string, ItemSO> itemLookupCache;
+
+        public static ItemSO GetFromId(string itemId)
+        {
+            if (itemLookupCache == null)
+            {
+                itemLookupCache = new();
+                var itemList = Resources.LoadAll<ItemSO>("");
+
+                foreach (var item in itemList)
+                {
+                    if (itemLookupCache.ContainsKey(item.Id))
+                    {
+                        Debug.LogError("There is a duplicate Id in Items for objectId: " + item.Id);
+                        continue;
+                    }
+
+                    itemLookupCache[item.Id] = item;
+                }
+            }
+
+            if (itemId == null || !itemLookupCache.TryGetValue(itemId, out ItemSO value)) return null;
+
+            return value;
+        }
 
 #if UNITY_EDITOR
         private void OnValidate()

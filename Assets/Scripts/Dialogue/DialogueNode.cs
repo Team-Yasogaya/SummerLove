@@ -16,10 +16,48 @@ namespace NoName
 
         [SerializeField] private List<DialogueClue> _dialogueClues = new();
 
+        [Header("Trigger Actions")]
+        [SerializeField] private DialogueAction[] _onEnterActions;
+        [SerializeField] private DialogueAction[] _onExitActions;
+
+        [Header("Animations")]
+        [SerializeField] private string _onEnterAnimation;
+        [SerializeField] private string _onExitAnimation;
+
+        [Header("Conditions")]
+        [SerializeField] private Condition _condition;
+
         public bool IsPlayerSpeaking { get { return _isPlayerSpeaking; } }
         public string Text { get { return _text; } }
         public List<string> Children { get { return _children; } }
         public List<DialogueClue> DialogueClues { get { return _dialogueClues; } }
+
+        public IEnumerable<DialogueAction> OnEnterActions
+        {
+            get
+            {
+                _onEnterActions ??= new DialogueAction[0];
+
+                foreach (var action in _onEnterActions)
+                {
+                    yield return action;
+                }
+            }
+        }
+        public IEnumerable<DialogueAction> OnExitActions
+        {
+            get
+            {
+                _onExitActions ??= new DialogueAction[0];
+
+                foreach (var action in _onExitActions)
+                {
+                    yield return action;
+                }
+            }
+        }
+        public string OnEnterAnimation => _onEnterAnimation;
+        public string OnExitAnimation => _onExitAnimation;
 
         [System.Serializable]
         public enum ClueType

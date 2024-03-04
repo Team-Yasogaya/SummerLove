@@ -9,6 +9,7 @@ namespace NoName
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue", order = 0)]
     public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
+        [SerializeField] private string _id;
         [SerializeField] private DialogueNode _rootNode;
         [SerializeField] private List<DialogueNode> _nodes = new ();
         [SerializeField] private int _maxCollectableClues;
@@ -18,10 +19,15 @@ namespace NoName
         public IEnumerable<DialogueNode> Nodes { get { return _nodes; } }
         public DialogueNode RootNode { get { return _rootNode; } }
         public int MaxCollectableClues { get { return _maxCollectableClues; } }
-     
+
 
         private void OnValidate()
         {
+            if (string.IsNullOrEmpty(_id))
+            {
+                _id = Guid.NewGuid().ToString();
+            }
+
             _nodeLookup.Clear();
 
             foreach (var node in _nodes)
@@ -29,6 +35,7 @@ namespace NoName
                 _nodeLookup[node.name] = node;
             }
         }
+
 
         public void Initialize()
         {

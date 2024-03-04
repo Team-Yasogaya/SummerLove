@@ -18,7 +18,7 @@ MonoBehaviour:
   - d470abbc-b63c-4d8d-a31a-bd2252845026
   Rect:
     serializedVersion: 2
-    x: 266
+    x: 267
     y: 86
     width: 200
     height: 150
@@ -26,6 +26,20 @@ MonoBehaviour:
   - ID: CULPRIT_01
     Word: market
     _type: 4
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 1
+    _itemId: dad7537c-dfb6-4a4f-8580-f16d7da843ff
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: HasInventoryItem
+    _parameters:
+    - dad7537c-dfb6-4a4f-8580-f16d7da843ff
+    - 
 --- !u!114 &-3537099524684931240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,6 +66,18 @@ MonoBehaviour:
   - ID: WEAPON_01
     Word: knife
     _type: 1
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 1
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
   m_Name: Dialogue_01_Sample
   m_EditorClassIdentifier: 
+  _id: c75c08ae-7e1a-42b7-af0d-34309fdfe8e0
   _rootNode: {fileID: 1568202402178229489}
   _nodes:
   - {fileID: 1568202402178229489}
@@ -96,3 +123,15 @@ MonoBehaviour:
   - ID: TIME_01
     Word: last night
     _type: 3
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 0
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
