@@ -7,6 +7,7 @@ namespace NoName
     public class NpcManager : Interactable
     {
         [SerializeField] private Npc _npc;
+        [SerializeField] private Dialogue _npcDialogue;
 
         private Collider _collider;
         private SpriteRenderer _spriteRenderer;
@@ -40,7 +41,7 @@ namespace NoName
         {
             FacePlayer(GameManager.Instance.Player);
 
-            _talker.Talk();
+            _talker.StartDialogue(_npcDialogue);
         }
 
         private void FacePlayer(PlayerStateMachine playerManager)

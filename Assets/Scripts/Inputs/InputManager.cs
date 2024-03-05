@@ -40,7 +40,7 @@ namespace NoName
             _playerControls.UI.Enable();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _playerControls.Player.Disable();
             _playerControls.UI.Disable();

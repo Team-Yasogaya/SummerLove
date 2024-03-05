@@ -17,9 +17,7 @@ namespace NoName
         [Header("Clues")]
         [SerializeField] private TextMeshProUGUI _cluesInkText;
 
-        private Dialogue dialogue;
-        private Talker talker;
-
+        private Dialogue _dialogue;
         private Vector3 promptPosition;
 
         // Text Speech
@@ -27,60 +25,35 @@ namespace NoName
         private bool finished;
         private Coroutine typingRoutine;
 
-        // Dialogue Events
-        public Action OnDialogueFinished;
+        public event Action OnNodeFinished;
 
         private void Update()
         {
             
         }
 
-        public void StartDialogue(Dialogue dialogue, Talker talker)
+        private void OnEnable()
         {
-            this.dialogue = dialogue;
-            this.talker = talker;
-
-            dialogue.Initialize();
-
-            Open();
-
-            DialogueHistory.Instance.AddDialogueToHistory(dialogue, talker);
-
-            UpdateCluesInkCounter();
-
-            currentNode = dialogue.RootNode;
-            SetCharacterText(talker.Name);
-            _dialogueText.text = string.Empty;
-            StartTypingLine();
-
             InputManager.Instance.ConfirmEvent += OnConfirm;
         }
 
-        public void ReloadDialogueFromHistory(Dialogue dialogue)
+        private void OnDisable()
         {
-            DialogueHistory.DialogueRecord dialogueRecord = DialogueHistory.Instance.GetRecordByDialogue(dialogue);
-            this.talker = dialogueRecord.talker;
-            this.dialogue = dialogue;
-
-            Open();
-
-            UpdateCluesInkCounter();
-
-            currentNode = dialogue.RootNode;
-            SetCharacterText(talker.Name);
-            _dialogueText.text = string.Empty;
-            StartTypingLine();
-
-            InputManager.Instance.ConfirmEvent += OnConfirm;
-        }
-
-        public void EndDialogue()
-        {
-            Close();
             InputManager.Instance.ConfirmEvent -= OnConfirm;
+        }
 
-            OnDialogueFinished?.Invoke();
-            OnDialogueFinished = null;
+        public void StartDialogue(Dialogue dialogue)
+        {
+            _dialogue = dialogue;
+            _dialogueText.text = string.Empty;
+        }
+
+        public void AddNode(DialogueNode node, string talkerName = null)
+        {
+            currentNode = node;
+            //SetCharacterText(talker.Name);
+            _dialogueText.text = string.Empty;
+            StartTypingLine();
         }
 
         public void SetCharacterText(string text)
@@ -92,15 +65,7 @@ namespace NoName
         {
             if (finished)
             {
-                if (currentNode.Children.Count > 0)
-                {
-                    currentNode = dialogue.GetNode(currentNode.Children[0]);
-                    StartTypingLine();
-                }
-                else
-                {
-                    EndDialogue();
-                }
+                OnNodeFinished?.Invoke();
             }
             else
             {
@@ -139,12 +104,12 @@ namespace NoName
 
             foreach (var clue in currentNode.DialogueClues)
             {
-                if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Count == dialogue.MaxCollectableClues)
+                if (DialogueHistory.Instance.GetRecordByDialogue(_dialogue).collectedClues.Count == _dialogue.MaxCollectableClues)
                 {
                     buildText = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
                     _dialogueText.text = buildText;
                 }
-                else if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Contains(clue))
+                else if (DialogueHistory.Instance.GetRecordByDialogue(_dialogue).collectedClues.Contains(clue))
                 {
                     buildText = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
                     _dialogueText.text = buildText;
@@ -172,18 +137,18 @@ namespace NoName
             CollectClue(clue);
         }
 
-        private void UpdateCluesInkCounter()
+        public void UpdateCluesInkCounter()
         {
-            DialogueHistory.DialogueRecord record = DialogueHistory.Instance.GetRecordByDialogue(dialogue);
+            DialogueHistory.DialogueRecord record = DialogueHistory.Instance.GetRecordByDialogue(_dialogue);
 
-            _cluesInkText.text = (dialogue.MaxCollectableClues - record.collectedClues.Count).ToString();
+            _cluesInkText.text = (_dialogue.MaxCollectableClues - record.collectedClues.Count).ToString();
         }
 
         private void CollectClue(DialogueNode.DialogueClue clue)
         {
             // PLAY COLLECTING ANIMATION
 
-            DialogueHistory.Instance.AddCollectedClueToDialogue(dialogue, clue);
+            DialogueHistory.Instance.AddCollectedClueToDialogue(_dialogue, clue);
 
             UpdateCluesInkCounter();
             BuildDialogueNodeClues();

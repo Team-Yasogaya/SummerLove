@@ -83,8 +83,8 @@ namespace NoName
         {
             Close();
 
-            GameUI.DialoguePrompt.ReloadDialogueFromHistory(dialogue);
-            GameUI.DialoguePrompt.OnDialogueFinished = GameUI.OpenDialogueLibrary;
+            _currentSelectedTalker.RestartDialogueFromHistory(dialogue);
+            _currentSelectedTalker.OnEndDialogue += GameUI.OpenDialogueLibrary;
         }
     }
 }

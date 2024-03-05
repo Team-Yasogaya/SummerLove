@@ -145,6 +145,11 @@ namespace NoName
             return null;
         }
 
+        public bool CheckCondition(IEnumerable<IPredicateEvaluator> evaluators)
+        {
+            return _condition.Check(evaluators);
+        }
+
 #if UNITY_EDITOR
         public void UpdateText(string text)
         {

@@ -1914,8 +1914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88c749707ca304b879a61f370a6aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Rei
-  _talkerDialogue: {fileID: 11400000, guid: 45d30bd576de4ba4fb1443e8a418d498, type: 2}
+  _talkerName: Yamada
 --- !u!114 &1367722390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1929,6 +1928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npc: {fileID: 11400000, guid: 39320efda84da04458d5c40cd23351c7, type: 2}
+  _npcDialogue: {fileID: 11400000, guid: 45d30bd576de4ba4fb1443e8a418d498, type: 2}
 --- !u!65 &1367722391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2019,6 +2019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npc: {fileID: 11400000, guid: 39320efda84da04458d5c40cd23351c7, type: 2}
+  _npcDialogue: {fileID: 11400000, guid: 78f30439c7572654ca66bcc5912b7c54, type: 2}
 --- !u!114 &1382427900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2031,8 +2032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88c749707ca304b879a61f370a6aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Aiko
-  _talkerDialogue: {fileID: 11400000, guid: 78f30439c7572654ca66bcc5912b7c54, type: 2}
+  _talkerName: Miko
 --- !u!4 &1398100856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8157439462563172263, guid: 179c5eef9b73cab4a83a9b4bc9ed977e, type: 3}
@@ -2257,8 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88c749707ca304b879a61f370a6aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Yuki
-  _talkerDialogue: {fileID: 11400000, guid: 84b9bcb2a281b8d458ac3ef23294759d, type: 2}
+  _talkerName: Yusuke
 --- !u!114 &1598401086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,6 +2271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _npc: {fileID: 11400000, guid: 39320efda84da04458d5c40cd23351c7, type: 2}
+  _npcDialogue: {fileID: 11400000, guid: 84b9bcb2a281b8d458ac3ef23294759d, type: 2}
 --- !u!65 &1598401087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3614,7 +3614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8218408900472781333, guid: ff07319b2f4ae0842a819ac51d0e0d9c, type: 3}
       propertyPath: m_PathPosition
-      value: 0.406354
+      value: 0.2597356
       objectReference: {fileID: 0}
     - target: {fileID: 8218408901923440769, guid: ff07319b2f4ae0842a819ac51d0e0d9c, type: 3}
       propertyPath: m_RootOrder
@@ -3971,10 +3971,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 815826650, guid: e9ffed85e52c64943bb6a18451266096, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1049334432, guid: e9ffed85e52c64943bb6a18451266096, type: 3}
       propertyPath: _openInventoryButton
       value: 
       objectReference: {fileID: 456599533}
+    - target: {fileID: 1990676249, guid: e9ffed85e52c64943bb6a18451266096, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8399539131372506465, guid: e9ffed85e52c64943bb6a18451266096, type: 3}
       propertyPath: m_Name
       value: Game UI
