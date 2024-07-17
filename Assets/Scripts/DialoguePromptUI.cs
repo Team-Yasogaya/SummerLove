@@ -1,22 +1,24 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace NoName
 {
-    public class DialoguePromptUI : MonoBehaviour, IPointerClickHandler
+    public class DialoguePromptUI : BaseMenuUI, IPointerClickHandler
     {
         [Header("Prompt")]
         [SerializeField] private TextMeshProUGUI _dialogueText;
         [SerializeField] private TextMeshProUGUI _talkerName;
         [SerializeField] private float _typingSpeed;
 
+        [Header("Clues")]
+        [SerializeField] private TextMeshProUGUI _cluesInkText;
+
         private Dialogue dialogue;
-        private string talkerName;
+        private Talker talker;
 
         private Vector3 promptPosition;
 
@@ -25,39 +27,65 @@ namespace NoName
         private bool finished;
         private Coroutine typingRoutine;
 
+        // Dialogue Events
+        public Action OnDialogueFinished;
+
         private void Update()
         {
             
         }
 
-        public void SetDialogue(Dialogue dialogue, string talkerName)
+        public void StartDialogue(Dialogue dialogue, Talker talker)
         {
             this.dialogue = dialogue;
-            this.talkerName = talkerName;
-        }
+            this.talker = talker;
 
-        public void StartDialogue()
-        {
-            InputManager.Instance.DisablePlayerControls();
+            dialogue.Initialize();
+
+            Open();
+
+            DialogueHistory.Instance.AddDialogueToHistory(dialogue, talker);
+
+            UpdateCluesInkCounter();
 
             currentNode = dialogue.RootNode;
-            SetCharacterText(talkerName);
+            SetCharacterText(talker.Name);
             _dialogueText.text = string.Empty;
             StartTypingLine();
+
+            InputManager.Instance.ConfirmEvent += OnConfirm;
+        }
+
+        public void ReloadDialogueFromHistory(Dialogue dialogue)
+        {
+            DialogueHistory.DialogueRecord dialogueRecord = DialogueHistory.Instance.GetRecordByDialogue(dialogue);
+            this.talker = dialogueRecord.talker;
+            this.dialogue = dialogue;
+
+            Open();
+
+            UpdateCluesInkCounter();
+
+            currentNode = dialogue.RootNode;
+            SetCharacterText(talker.Name);
+            _dialogueText.text = string.Empty;
+            StartTypingLine();
+
             InputManager.Instance.ConfirmEvent += OnConfirm;
         }
 
         public void EndDialogue()
         {
-            InputManager.Instance.EnablePlayerControls();
-
-            gameObject.SetActive(false);
+            Close();
             InputManager.Instance.ConfirmEvent -= OnConfirm;
+
+            OnDialogueFinished?.Invoke();
+            OnDialogueFinished = null;
         }
 
         public void SetCharacterText(string text)
         {
-            _talkerName.text = talkerName;
+            _talkerName.text = text;
         }
 
         public void OnConfirm()
@@ -76,8 +104,8 @@ namespace NoName
             }
             else
             {
-                // TODO
-                StopAllCoroutines();
+                StopCoroutine(typingRoutine);
+                
                 _dialogueText.text = currentNode.Text;
 
                 BuildDialogueNodeClues();
@@ -107,9 +135,25 @@ namespace NoName
 
         private void BuildDialogueNodeClues()
         {
+            string buildText = currentNode.Text;
+
             foreach (var clue in currentNode.DialogueClues)
             {
-                _dialogueText.text = _dialogueText.text.Replace(clue.Word, clue.GetHyperTextClue());
+                if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Count == dialogue.MaxCollectableClues)
+                {
+                    buildText = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
+                    _dialogueText.text = buildText;
+                }
+                else if (DialogueHistory.Instance.GetRecordByDialogue(dialogue).collectedClues.Contains(clue))
+                {
+                    buildText = buildText.Replace(clue.Word, clue.GetDisabledHyperTextClue());
+                    _dialogueText.text = buildText;
+                }
+                else 
+                {
+                    buildText = buildText.Replace(clue.Word, clue.GetHyperTextClue());
+                    _dialogueText.text = buildText;
+                }
             }
         }
 
@@ -124,6 +168,25 @@ namespace NoName
             var clue = currentNode.GetDialogueClueByID(linkId);
 
             Debug.Log("Clicked on the Clue: " + clue.Word + " with ID: " + clue.ID);
+
+            CollectClue(clue);
+        }
+
+        private void UpdateCluesInkCounter()
+        {
+            DialogueHistory.DialogueRecord record = DialogueHistory.Instance.GetRecordByDialogue(dialogue);
+
+            _cluesInkText.text = (dialogue.MaxCollectableClues - record.collectedClues.Count).ToString();
+        }
+
+        private void CollectClue(DialogueNode.DialogueClue clue)
+        {
+            // PLAY COLLECTING ANIMATION
+
+            DialogueHistory.Instance.AddCollectedClueToDialogue(dialogue, clue);
+
+            UpdateCluesInkCounter();
+            BuildDialogueNodeClues();
         }
     }
 }

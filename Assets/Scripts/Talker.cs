@@ -9,11 +9,12 @@ namespace NoName
         [SerializeField] private string _name;
         [SerializeField] private Dialogue _talkerDialogue;
 
+        public string Name { get { return _name; } }
+
         public void Talk()
         {
             GameUI.DialoguePrompt.gameObject.SetActive(true);
-            GameUI.DialoguePrompt.SetDialogue(_talkerDialogue, _name);
-            GameUI.DialoguePrompt.StartDialogue();
+            GameUI.DialoguePrompt.StartDialogue(_talkerDialogue, this);
         }
     }
 }
