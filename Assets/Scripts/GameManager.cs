@@ -6,11 +6,11 @@ namespace NoName
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance;
+        public static GameManager Instance { get; private set; }
 
         [field: SerializeField] public PlayerStateMachine Player { get; private set; }
 
-        private static List<IPredicateEvaluator> _evaluatorList = new();
+        private static readonly List<IPredicateEvaluator> _evaluatorList = new();
 
         private void Awake()
         {

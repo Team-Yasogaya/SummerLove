@@ -129,10 +129,11 @@ namespace NoName
             if (linkIndex == -1) return;
 
             var linkId = _dialogueText.textInfo.linkInfo[linkIndex].GetLinkID();
+            var linkGuid = Guid.Parse(linkId);
 
-            var clue = currentNode.GetDialogueClueByID(linkId);
+            var clue = currentNode.GetDialogueClueByID(linkGuid);
 
-            Debug.Log("Clicked on the Clue: " + clue.Word + " with ID: " + clue.ID);
+            Debug.Log("Clicked on the Clue: " + clue.Word + " with ID: " + clue.Id);
 
             CollectClue(clue);
         }
@@ -144,7 +145,7 @@ namespace NoName
             _cluesInkText.text = (_dialogue.MaxCollectableClues - record.collectedClues.Count).ToString();
         }
 
-        private void CollectClue(DialogueNode.DialogueClue clue)
+        private void CollectClue(DialogueClue clue)
         {
             // PLAY COLLECTING ANIMATION
 

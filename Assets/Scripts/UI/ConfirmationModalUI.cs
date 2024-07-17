@@ -15,12 +15,16 @@ namespace NoName {
         public event Action OnConfirm;
         public event Action OnCancel;
 
-        private void Awake()
+        private void OnEnable()
         {
             _confirmButton.onClick.AddListener(ConfirmAction);
             _cancelButton.onClick.AddListener(CancelAction);
+        }
 
-            CloseModalBox();
+        private void OnDisable()
+        {
+            _confirmButton.onClick?.RemoveListener(ConfirmAction);
+            _cancelButton.onClick?.RemoveListener(CancelAction);
         }
 
         public void SetModalText(string text)

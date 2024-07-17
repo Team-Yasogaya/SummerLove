@@ -1,8 +1,10 @@
 using EasyButtons;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static NoName.DialogueClue;
 
 namespace NoName
 {
@@ -59,84 +61,35 @@ namespace NoName
         public string OnEnterAnimation => _onEnterAnimation;
         public string OnExitAnimation => _onExitAnimation;
 
-        [System.Serializable]
-        public enum ClueType
-        {
-            None = 0,
-            Weapon = 1,
-            Victim = 2, 
-            Time = 3,
-            Culprit = 4
-        }
-
-        [System.Serializable]
-        public class DialogueClue
-        {
-            
-            public string ID;
-            public string Word;
-
-            [SerializeField] private ClueType _type;
-
-            public DialogueClue(ClueType type, string id)
-            {
-                ID = id;
-                _type = type;
-            }
-
-            public string GetHyperTextClue()
-            {
-                switch (_type)
-                {
-                    case ClueType.None:
-                        return null;
-                    case ClueType.Weapon:
-                        return "<link=" + ID + "><color=red>" + Word + "</color></link>";
-                    case ClueType.Victim:
-                        return "<link=" + ID + "><color=green>" + Word + "</color></link>";
-                    case ClueType.Time:
-                        return "<link=" + ID + "><color=blue>" + Word + "</color></link>";
-                    case ClueType.Culprit:
-                        return "<link=" + ID + "><color=orange>" + Word + "</color></link>";
-                    default:
-                        return null;
-                }
-            }
-
-            public string GetDisabledHyperTextClue() {
-                return "<color=grey>" + Word + "</color>";
-            }
-        }
-
         [Button]
         private void AddWeaponClue()
         {
-            _dialogueClues.Add(new DialogueClue(ClueType.Weapon, "WEAPON_" + _dialogueClues.Count));
+            _dialogueClues.Add(new DialogueClue(ClueType.Weapon, Guid.NewGuid()));
         }
 
         [Button]
         private void AddVictimClue()
         {
-            _dialogueClues.Add(new DialogueClue(ClueType.Victim, "VICTIM_" + _dialogueClues.Count));
+            _dialogueClues.Add(new DialogueClue(ClueType.Victim, Guid.NewGuid()));
         }
 
         [Button]
         private void AddTimeClue()
         {
-            _dialogueClues.Add(new DialogueClue(ClueType.Time, "TIME_" + _dialogueClues.Count));
+            _dialogueClues.Add(new DialogueClue(ClueType.Time, Guid.NewGuid()));
         }
 
         [Button]
         private void AddCulpritClue()
         {
-            _dialogueClues.Add(new DialogueClue(ClueType.Culprit, "CULPRIT_" + _dialogueClues.Count));
+            _dialogueClues.Add(new DialogueClue(ClueType.Culprit, Guid.NewGuid()));
         }
 
-        public DialogueClue GetDialogueClueByID(string id)
+        public DialogueClue GetDialogueClueByID(Guid id)
         {
             foreach (var clue in _dialogueClues)
             {
-                if (clue.ID.Equals(id))
+                if (clue.Id.Equals(id))
                 {
                     return clue;
                 }

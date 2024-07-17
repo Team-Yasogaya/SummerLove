@@ -13,7 +13,7 @@ namespace NoName {
         {
             public Dialogue dialogue;
             public Talker talker;
-            public List<DialogueNode.DialogueClue> collectedClues;
+            public List<DialogueClue> collectedClues;
 
             //public bool AllCluesCollected
             //{
@@ -79,7 +79,7 @@ namespace NoName {
             RegisteredDialogues.Add(newRecord);
         }
 
-        public void AddCollectedClueToDialogue(Dialogue dialogue, DialogueNode.DialogueClue clue)
+        public void AddCollectedClueToDialogue(Dialogue dialogue, DialogueClue clue)
         {
             if (GetRecordByDialogue(dialogue) == null)
             {
@@ -96,7 +96,7 @@ namespace NoName {
             GetRecordByDialogue(dialogue).collectedClues.Add(clue);
         }
 
-        public void RemoveCollectedClueFromOwnerDialogue(DialogueNode.DialogueClue clue) 
+        public void RemoveCollectedClueFromOwnerDialogue(DialogueClue clue) 
         {
             Debug.Log("Remove Collected Clue Invoked");
 

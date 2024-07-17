@@ -1,3 +1,4 @@
+using EasyButtons;
 using NoName.UI;
 using System;
 using System.Collections;
@@ -8,7 +9,7 @@ namespace NoName
 {
     public class GameUI : MonoBehaviour
     {
-        public static GameUI Instance;
+        public static GameUI Instance { get; private set; }
 
         [SerializeField] private OverworldUI _overworldUI;
         [SerializeField] private DialoguePromptUI _dialoguePromptUI;
@@ -16,6 +17,9 @@ namespace NoName
         [SerializeField] private DeductionTableUI _deductionTableUI;
         [SerializeField] private DialogueLibraryUI _dialogueLibraryUI;
         [SerializeField] private InventoryUI _inventoryUI;
+
+        [Header("Transitions")]
+        [SerializeField] TransitionUI _deductionTimeTransition;
 
         public static OverworldUI OverworldUI { get { return Instance._overworldUI; } }
         public static DialoguePromptUI DialoguePrompt { get { return Instance._dialoguePromptUI; } }
@@ -26,6 +30,8 @@ namespace NoName
         public static List<BaseMenuUI> MenuStack { get { return Instance._menuStack; } }
 
         private List<BaseMenuUI> _menuStack;
+
+        public static event Action OnBackToGame;
 
         private void Awake()
         {
@@ -64,6 +70,13 @@ namespace NoName
             Inventory.Open();
         }
 
+        [Button("Start Deduction Time")]
+        private void StartDeductionTime()
+        {
+            _deductionTimeTransition.OnTransitionComplete += OpenDeductionTable;
+            _deductionTimeTransition.StartTransition();
+        }
+
         #region Menu Stack
         public void AddMenuToStack(BaseMenuUI menu)
         {
@@ -93,6 +106,8 @@ namespace NoName
             {
                 InputManager.Instance.EnablePlayerControls();
                 OverworldUI.gameObject.SetActive(true);
+
+                OnBackToGame?.Invoke();
             }
         }
         #endregion
