@@ -1,9 +1,9 @@
 using EasyButtons;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Video;
 using static NoName.DialogueClue;
 
 namespace NoName
@@ -11,6 +11,7 @@ namespace NoName
     public class DialogueNode : ScriptableObject
     {
         [SerializeField] private bool _isPlayerSpeaking;
+        [SerializeField] private bool _isCinematicNode;
         [TextArea]
         [SerializeField] private string _text;
         [SerializeField] private List<string> _children = new ();
@@ -29,10 +30,15 @@ namespace NoName
         [Header("Conditions")]
         [SerializeField] private Condition _condition;
 
+        [Header("Cinematic Elements")]
+        [SerializeField] private VideoClip _videoClip;
+
         public bool IsPlayerSpeaking { get { return _isPlayerSpeaking; } }
         public string Text { get { return _text; } }
         public List<string> Children { get { return _children; } }
         public List<DialogueClue> DialogueClues { get { return _dialogueClues; } }
+        public bool IsCinematicNode { get { return _isCinematicNode; } }
+        public VideoClip VideoClip { get { return _videoClip; } }
 
         public IEnumerable<DialogueAction> OnEnterActions
         {
@@ -85,7 +91,7 @@ namespace NoName
             _dialogueClues.Add(new DialogueClue(ClueType.Culprit, Guid.NewGuid()));
         }
 
-        public DialogueClue GetDialogueClueByID(Guid id)
+        public DialogueClue GetDialogueClueByID(string id)
         {
             foreach (var clue in _dialogueClues)
             {

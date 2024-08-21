@@ -129,9 +129,8 @@ namespace NoName
             if (linkIndex == -1) return;
 
             var linkId = _dialogueText.textInfo.linkInfo[linkIndex].GetLinkID();
-            var linkGuid = Guid.Parse(linkId);
 
-            var clue = currentNode.GetDialogueClueByID(linkGuid);
+            var clue = currentNode.GetDialogueClueByID(linkId);
 
             Debug.Log("Clicked on the Clue: " + clue.Word + " with ID: " + clue.Id);
 

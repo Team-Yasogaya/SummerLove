@@ -97,8 +97,16 @@ namespace NoName
             {
                 OnExitNode?.Invoke();
 
-                UpdateNode(availableNodes[childIndex]);
-                
+                var nextNode = availableNodes[childIndex];
+
+                if (nextNode.IsCinematicNode) 
+                {
+                    UpdateCinematicNode(nextNode);
+                }
+                else
+                {
+                    UpdateNode(nextNode);
+                }
             }
             else
             {
@@ -111,6 +119,15 @@ namespace NoName
             _currentNode = node;
             GameUI.DialoguePrompt.AddNode(_currentNode);
             GameUI.DialoguePrompt.OnNodeFinished += Next;
+
+            OnEnterNode?.Invoke();
+        }
+
+        private void UpdateCinematicNode(DialogueNode node)
+        {
+            _currentNode = node;
+            CinematicManager.Instance.PlayCinematic(node.VideoClip);
+            CinematicManager.Instance.OnCinematicEnded += Next;
 
             OnEnterNode?.Invoke();
         }

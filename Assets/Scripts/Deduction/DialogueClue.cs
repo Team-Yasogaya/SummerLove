@@ -22,7 +22,7 @@ namespace NoName
         [SerializeField] private string _word;
 
 
-        public Guid Id => Guid.Parse(_id);
+        public string Id => _id;
         public string Word => _word;
 
         public DialogueClue(ClueType type, Guid id)

@@ -17,6 +17,7 @@ namespace NoName
         [SerializeField] private DeductionTableUI _deductionTableUI;
         [SerializeField] private DialogueLibraryUI _dialogueLibraryUI;
         [SerializeField] private InventoryUI _inventoryUI;
+        [SerializeField] private VideoPlayerUI _videoPlayerUI;
 
         [Header("Transitions")]
         [SerializeField] TransitionUI _deductionTimeTransition;
@@ -27,6 +28,7 @@ namespace NoName
         public static DeductionTableUI DeductionTable { get { return Instance._deductionTableUI; } }
         public static DialogueLibraryUI DialogueLibrary { get { return Instance._dialogueLibraryUI; } }
         public static InventoryUI Inventory { get { return Instance._inventoryUI; } }
+        public static VideoPlayerUI VideoPlayer { get { return Instance._videoPlayerUI; } } 
         public static List<BaseMenuUI> MenuStack { get { return Instance._menuStack; } }
 
         private List<BaseMenuUI> _menuStack;
