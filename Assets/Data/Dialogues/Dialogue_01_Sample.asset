@@ -18,20 +18,20 @@ MonoBehaviour:
   - d470abbc-b63c-4d8d-a31a-bd2252845026
   Rect:
     serializedVersion: 2
-    x: 267
-    y: 86
+    x: 265
+    y: 87
     width: 200
     height: 150
   _dialogueClues:
-  - ID: CULPRIT_01
-    Word: market
+  - _id: 73d5d937-f11c-488b-886a-6c076939966b
     _type: 4
+    _word: market
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
   _onExitAnimation: 
   _condition:
-    _conditionType: 1
+    _conditionType: 0
     _itemId: dad7537c-dfb6-4a4f-8580-f16d7da843ff
     _quantity: 1
     _undeadIndex: 0
@@ -59,19 +59,19 @@ MonoBehaviour:
   Rect:
     serializedVersion: 2
     x: 517
-    y: 86
+    y: 85
     width: 200
     height: 150
   _dialogueClues:
-  - ID: WEAPON_01
-    Word: knife
+  - _id: b7130e95-4982-44c7-a3d0-a256d2e8f02f
     _type: 1
+    _word: knife
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
   _onExitAnimation: 
   _condition:
-    _conditionType: 1
+    _conditionType: 0
     _itemId: 
     _quantity: 1
     _undeadIndex: 0
@@ -115,14 +115,14 @@ MonoBehaviour:
   - 5dcae135-5539-4bca-ad0a-839764c1acb2
   Rect:
     serializedVersion: 2
-    x: 16
-    y: 85
+    x: 15
+    y: 86
     width: 200
     height: 150
   _dialogueClues:
-  - ID: TIME_01
-    Word: last night
+  - _id: f1d15bf8-5df4-4337-b4c5-358ebd13924e
     _type: 3
+    _word: last night
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 

@@ -17,17 +17,17 @@ namespace NoName
             Culprit = 4
         }
 
+        [SerializeField] private string _id;
         [SerializeField] private ClueType _type;
+        [SerializeField] private string _word;
 
-        private Guid _id;
-        private string _word;
 
-        public Guid Id => _id;
+        public Guid Id => Guid.Parse(_id);
         public string Word => _word;
 
         public DialogueClue(ClueType type, Guid id)
         {
-            _id = id;
+            _id = id.ToString();
             _type = type;
         }
 

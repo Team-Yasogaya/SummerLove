@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
   m_Name: Dialogue_02_Sample
   m_EditorClassIdentifier: 
+  _id: bad5ff9e-d355-4fda-a84a-50b22702c0bb
   _rootNode: {fileID: 7081797474500484014}
   _nodes:
   - {fileID: 7081797474500484014}
@@ -40,6 +41,18 @@ MonoBehaviour:
     width: 200
     height: 150
   _dialogueClues: []
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
 --- !u!114 &7081797474500484014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +76,18 @@ MonoBehaviour:
     width: 200
     height: 150
   _dialogueClues: []
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
 --- !u!114 &7678175329394773898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +111,18 @@ MonoBehaviour:
     width: 200
     height: 150
   _dialogueClues:
-  - ID: CULPRIT_01
-    Word: Shibuya Crossing
+  - _id: 85a14094-02c3-4415-b063-fefab8c42b1b
     _type: 4
+    _word: Shibuya Crossing
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
