@@ -10,7 +10,7 @@ namespace NoName
         [SerializeField] private float _runningSpeed;
         [SerializeField] private float _walkingSpeed;
         [SerializeField] private float _sprintSpeed;
-        [SerializeField] private float _rotationSmoothTime = .3f;
+        [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _animationDampTime = .1f;
         [SerializeField] private float _interactionRange;
 
@@ -27,7 +27,7 @@ namespace NoName
         public float RunningSpeed { get { return _runningSpeed; } }
         public float WalkingSpeed { get { return _walkingSpeed; } }
         public float SprintSpeed { get { return _sprintSpeed; } }
-        public float RotationSmoothTime { get { return _rotationSmoothTime; } }
+        public float RotationSpeed { get { return _rotationSpeed; } }
         public float InteractionRange { get { return _interactionRange; } }
         public Transform CameraTarget { get { return _cameraTarget; } }
 
