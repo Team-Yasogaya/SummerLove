@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6838940367088962907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 5dcae135-5539-4bca-ad0a-839764c1acb2
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 0
+  _text: I heard someone talking about a suspicious person at the market.
+  _children:
+  - 32d7ef9f-df84-4221-bf59-ac0d84519cf0
+  Rect:
+    serializedVersion: 2
+    x: 263
+    y: 91
+    width: 200
+    height: 150
+  _dialogueClues:
+  - _id: 73d5d937-f11c-488b-886a-6c076939966b
+    _type: 4
+    _word: market
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: dad7537c-dfb6-4a4f-8580-f16d7da843ff
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: HasInventoryItem
+    _parameters:
+    - dad7537c-dfb6-4a4f-8580-f16d7da843ff
+    - 
+  _videoClip: {fileID: 0}
+--- !u!114 &-3537099524684931240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: d470abbc-b63c-4d8d-a31a-bd2252845026
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 0
+  _text: We need to find that person. They mentioned something about a knife found
+    in the dirt.
+  _children: []
+  Rect:
+    serializedVersion: 2
+    x: 715
+    y: 96
+    width: 200
+    height: 150
+  _dialogueClues:
+  - _id: b7130e95-4982-44c7-a3d0-a256d2e8f02f
+    _type: 1
+    _word: knife
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
+  m_Name: Dialogue_01_Sample
+  m_EditorClassIdentifier: 
+  _id: c75c08ae-7e1a-42b7-af0d-34309fdfe8e0
+  _rootNode: {fileID: 1568202402178229489}
+  _nodes:
+  - {fileID: 1568202402178229489}
+  - {fileID: -6838940367088962907}
+  - {fileID: -3537099524684931240}
+  - {fileID: 4633822485124343124}
+  _maxCollectableClues: 2
+--- !u!114 &1568202402178229489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 5f35ab3e-eb99-49c3-9b84-ee6606d045a9
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 0
+  _text: Hey, you were here last night, right?
+  _children:
+  - 5dcae135-5539-4bca-ad0a-839764c1acb2
+  Rect:
+    serializedVersion: 2
+    x: 15
+    y: 86
+    width: 200
+    height: 150
+  _dialogueClues:
+  - _id: f1d15bf8-5df4-4337-b4c5-358ebd13924e
+    _type: 3
+    _word: last night
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 0
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 0}
+--- !u!114 &4633822485124343124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 32d7ef9f-df84-4221-bf59-ac0d84519cf0
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 1
+  _text: VIDEO
+  _children:
+  - d470abbc-b63c-4d8d-a31a-bd2252845026
+  Rect:
+    serializedVersion: 2
+    x: 486
+    y: 91
+    width: 200
+    height: 150
+  _dialogueClues: []
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 32900000, guid: 9425eec2bd811154688d1e54f4b87081, type: 3}

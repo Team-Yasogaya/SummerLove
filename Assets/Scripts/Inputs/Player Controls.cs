@@ -39,18 +39,45 @@ namespace NoName
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""e4ecf45d-96c4-40ed-bddf-83b7f0c2e531"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""b1581e27-2b6f-4c53-8f37-e05b5912ed70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Deduction"",
+                    ""type"": ""Button"",
+                    ""id"": ""a16f4fe0-deac-41cf-9613-aebf48765a43"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dialogues"",
+                    ""type"": ""Button"",
+                    ""id"": ""7be8d03c-f8f9-457c-b82a-eea9b3368ffd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""720a42a0-a34c-4916-9d3a-c3d72f424ebe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d6ed9a0-39cd-4436-967f-ac3438fb5517"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -72,10 +99,10 @@ namespace NoName
                 {
                     ""name"": ""up"",
                     ""id"": ""a9b4b2f6-db3d-4b9f-9b50-eb0b74581657"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -83,10 +110,10 @@ namespace NoName
                 {
                     ""name"": ""down"",
                     ""id"": ""8688ecdb-5806-4d1d-9341-4351973dce30"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -94,10 +121,10 @@ namespace NoName
                 {
                     ""name"": ""left"",
                     ""id"": ""57efd006-ad9c-4e49-b136-a0325ed5e890"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -105,33 +132,143 @@ namespace NoName
                 {
                     ""name"": ""right"",
                     ""id"": ""a086c125-45aa-48fa-982d-91815c740a17"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eb33dc10-8195-4c25-bf03-e21b58cc47f8"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""27b6c256-e58a-4d1b-aea3-19f248467192"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebf88267-8856-4147-a3d3-7a861104ec06"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""6be8f2e4-ea5c-4395-b2fc-2aa245ec25f6"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3203d2b5-51da-4215-b1f2-401278c81280"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a6974c2-5abb-4112-b495-505be4f66346"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Deduction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1f80469-322d-4cda-b7f4-f30f97bebb12"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Deduction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41c4f197-845f-4b7f-b69c-ac9886510ffd"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dialogues"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0e43dc4-e631-4ebc-bb7f-93588776b9ce"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Dialogues"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7efb744-c9a4-4a1e-bc6e-7697c3ca098e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc9c277b-ccd7-439e-91ae-2eb1630be482"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""390a0cfa-53a0-43e9-815f-f9330c0825de"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82b301ba-56ad-4c6e-bae9-7f426d7bf450"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -158,6 +295,15 @@ namespace NoName
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""370339f9-21fa-4492-a597-b0a059e37180"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,17 +311,6 @@ namespace NoName
                     ""name"": """",
                     ""id"": ""97ccab9d-cd97-4f7d-9c6a-817a8b4e86c5"",
                     ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Confirm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""067f1dec-66d7-4a6f-a3c2-674cba34b8e5"",
-                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -204,21 +339,47 @@ namespace NoName
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b66eba7a-7255-48fc-b9f8-6ac78af7f4ab"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": []
+        },
+        {
+            ""name"": ""Xbox"",
+            ""bindingGroup"": ""Xbox"",
+            ""devices"": []
+        }
+    ]
 }");
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+            m_Player_Deduction = m_Player.FindAction("Deduction", throwIfNotFound: true);
+            m_Player_Dialogues = m_Player.FindAction("Dialogues", throwIfNotFound: true);
+            m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
             m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
+            m_UI_Skip = m_UI.FindAction("Skip", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -279,15 +440,21 @@ namespace NoName
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Interact;
+        private readonly InputAction m_Player_Deduction;
+        private readonly InputAction m_Player_Dialogues;
+        private readonly InputAction m_Player_Inventory;
+        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
             public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
-            public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
+            public InputAction @Deduction => m_Wrapper.m_Player_Deduction;
+            public InputAction @Dialogues => m_Wrapper.m_Player_Dialogues;
+            public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -300,12 +467,21 @@ namespace NoName
                     @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                    @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                     @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                     @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                    @Deduction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeduction;
+                    @Deduction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeduction;
+                    @Deduction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDeduction;
+                    @Dialogues.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDialogues;
+                    @Dialogues.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDialogues;
+                    @Dialogues.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDialogues;
+                    @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                    @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                    @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                    @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -313,12 +489,21 @@ namespace NoName
                     @Move.started += instance.OnMove;
                     @Move.performed += instance.OnMove;
                     @Move.canceled += instance.OnMove;
-                    @Look.started += instance.OnLook;
-                    @Look.performed += instance.OnLook;
-                    @Look.canceled += instance.OnLook;
                     @Interact.started += instance.OnInteract;
                     @Interact.performed += instance.OnInteract;
                     @Interact.canceled += instance.OnInteract;
+                    @Deduction.started += instance.OnDeduction;
+                    @Deduction.performed += instance.OnDeduction;
+                    @Deduction.canceled += instance.OnDeduction;
+                    @Dialogues.started += instance.OnDialogues;
+                    @Dialogues.performed += instance.OnDialogues;
+                    @Dialogues.canceled += instance.OnDialogues;
+                    @Inventory.started += instance.OnInventory;
+                    @Inventory.performed += instance.OnInventory;
+                    @Inventory.canceled += instance.OnInventory;
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
                 }
             }
         }
@@ -329,12 +514,14 @@ namespace NoName
         private IUIActions m_UIActionsCallbackInterface;
         private readonly InputAction m_UI_Confirm;
         private readonly InputAction m_UI_Cancel;
+        private readonly InputAction m_UI_Skip;
         public struct UIActions
         {
             private @PlayerControls m_Wrapper;
             public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Confirm => m_Wrapper.m_UI_Confirm;
             public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
+            public InputAction @Skip => m_Wrapper.m_UI_Skip;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -350,6 +537,9 @@ namespace NoName
                     @Cancel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
                     @Cancel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
                     @Cancel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                    @Skip.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSkip;
+                    @Skip.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSkip;
+                    @Skip.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSkip;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
@@ -360,20 +550,45 @@ namespace NoName
                     @Cancel.started += instance.OnCancel;
                     @Cancel.performed += instance.OnCancel;
                     @Cancel.canceled += instance.OnCancel;
+                    @Skip.started += instance.OnSkip;
+                    @Skip.performed += instance.OnSkip;
+                    @Skip.canceled += instance.OnSkip;
                 }
             }
         }
         public UIActions @UI => new UIActions(this);
+        private int m_KeyboardSchemeIndex = -1;
+        public InputControlScheme KeyboardScheme
+        {
+            get
+            {
+                if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+                return asset.controlSchemes[m_KeyboardSchemeIndex];
+            }
+        }
+        private int m_XboxSchemeIndex = -1;
+        public InputControlScheme XboxScheme
+        {
+            get
+            {
+                if (m_XboxSchemeIndex == -1) m_XboxSchemeIndex = asset.FindControlSchemeIndex("Xbox");
+                return asset.controlSchemes[m_XboxSchemeIndex];
+            }
+        }
         public interface IPlayerActions
         {
             void OnMove(InputAction.CallbackContext context);
-            void OnLook(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnDeduction(InputAction.CallbackContext context);
+            void OnDialogues(InputAction.CallbackContext context);
+            void OnInventory(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
             void OnConfirm(InputAction.CallbackContext context);
             void OnCancel(InputAction.CallbackContext context);
+            void OnSkip(InputAction.CallbackContext context);
         }
     }
 }

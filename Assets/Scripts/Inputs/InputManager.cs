@@ -18,6 +18,12 @@ namespace NoName
 
         public event Action ConfirmEvent;
         public event Action CancelEvent;
+        public event Action SkipEvent;
+
+        public bool DeductionInput { get; private set; }
+        public bool InventoryInput { get; private set; }
+        public bool DialoguesInput { get; private set; }
+        public bool PauseInput { get; private set; }
 
         private void Awake()
         {
@@ -40,7 +46,7 @@ namespace NoName
             _playerControls.UI.Enable();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _playerControls.Player.Disable();
             _playerControls.UI.Disable();
@@ -61,10 +67,9 @@ namespace NoName
             MoveInput = context.ReadValue<Vector2>();
         }
 
-      
-        public void OnLook(InputAction.CallbackContext context)
+        public void ResetInteract()
         {
-            
+            InteractEvent = null;
         }
 
         public void OnInteract(InputAction.CallbackContext context)
@@ -86,6 +91,33 @@ namespace NoName
             if (!context.performed) return;
 
             CancelEvent?.Invoke();
+        }
+
+        public void OnDeduction(InputAction.CallbackContext context)
+        {
+            DeductionInput = context.performed;
+        }
+
+        public void OnDialogues(InputAction.CallbackContext context)
+        {
+            DialoguesInput = context.performed;
+        }
+
+        public void OnInventory(InputAction.CallbackContext context)
+        {
+            InventoryInput = context.performed;
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            PauseInput = context.performed;
+        }
+
+        public void OnSkip(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+
+            SkipEvent?.Invoke();
         }
     }
 }

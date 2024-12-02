@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8674516954774672473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: c81e112e-8a1b-40f4-94c9-6e90df47681e
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 0
+  _text: Rumor has it a woman was seen acting suspiciously near the zoo.
+  _children:
+  - 66b33351-e822-48a9-a9f5-d46cd1c98edc
+  Rect:
+    serializedVersion: 2
+    x: 491
+    y: 85
+    width: 200
+    height: 150
+  _dialogueClues:
+  - _id: e78bac5a-411e-420c-8a1f-ac026e1a68e2
+    _type: 4
+    _word: woman
+  - _id: f3a9fc37-42fb-4c78-8eb6-8d742e9427ba
+    _type: 4
+    _word: zoo
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 0}
+--- !u!114 &-73386710716332964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: db417db1-67ec-4849-b190-a0b005499f6c
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 0
+  _text: Did you notice anything strange here last night?
+  _children:
+  - fd4248d4-55cb-410e-a185-ae64b545eb5b
+  Rect:
+    serializedVersion: 2
+    x: 34
+    y: 80
+    width: 200
+    height: 150
+  _dialogueClues: []
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
+  m_Name: Dialogue_03_Sample
+  m_EditorClassIdentifier: 
+  _id: 79aa2758-47fc-4163-a63a-c35994acf1b4
+  _rootNode: {fileID: -73386710716332964}
+  _nodes:
+  - {fileID: -73386710716332964}
+  - {fileID: -8674516954774672473}
+  - {fileID: 2315560084336811866}
+  - {fileID: 1975949063713901921}
+  _maxCollectableClues: 2
+--- !u!114 &1975949063713901921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: fd4248d4-55cb-410e-a185-ae64b545eb5b
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 1
+  _text: VIDEO
+  _children:
+  - c81e112e-8a1b-40f4-94c9-6e90df47681e
+  Rect:
+    serializedVersion: 2
+    x: 260
+    y: 82
+    width: 200
+    height: 150
+  _dialogueClues: []
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 32900000, guid: 81067ad59371f4644a7f71bf2ac21a0d, type: 3}
+--- !u!114 &2315560084336811866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 66b33351-e822-48a9-a9f5-d46cd1c98edc
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 0
+  _text: They say she was carrying something unusual, like a distinctive item that
+    could be a clue.
+  _children: []
+  Rect:
+    serializedVersion: 2
+    x: 720
+    y: 86
+    width: 200
+    height: 150
+  _dialogueClues:
+  - _id: eae9a9c0-dd0f-4dc3-a07a-667cca23311e
+    _type: 1
+    _word: distinctive item
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 0}

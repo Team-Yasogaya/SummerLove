@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,6 @@ namespace NoName
 {
     public class PlayerFreeLookState : PlayerBaseState
     {
-
-
         // UTILITIES
         private Interactable closestInteractable;
         private float closestDistance;
@@ -25,13 +24,35 @@ namespace NoName
 
         public override void Tick(float delta)
         {
+            HandleInputs();
             HandleMovement(delta);
             CheckForInteractables();
         }
 
         public override void Exit()
         {
-            
+
+        }
+
+        private void HandleInputs()
+        {
+            if (InputManager.Instance.DeductionInput)
+            {
+                GameUI.OpenDeductionTable();
+                return;
+            }
+
+            if (InputManager.Instance.DialoguesInput)
+            {
+                GameUI.OpenDialogueLibrary();
+                return;
+            }
+
+            if (InputManager.Instance.InventoryInput)
+            {
+                GameUI.OpenInventory();
+                return;
+            }
         }
 
         private void HandleMovement(float delta)
@@ -39,22 +60,18 @@ namespace NoName
             Vector3 movement = CalculateMovement();
             Move(movement * _playerStateMachine.RunningSpeed, delta);
 
-            if (movement.sqrMagnitude != 0)
-            {
-                targetRotation = Quaternion.LookRotation(movement);
-                _playerStateMachine.transform.rotation = Quaternion.Slerp(_playerStateMachine.transform.rotation, targetRotation, _playerStateMachine.RotationSmoothTime * delta);
-            }
+            Vector3 rotation = CalculateRotation();
+            Rotate(rotation * _playerStateMachine.RotationSpeed, delta);
 
-            _playerStateMachine.UpdateLocomotionAnimationValues(0f, movement.magnitude * (_playerStateMachine.IsSprinting ? 2 : 1));
+            _playerStateMachine.UpdateLocomotionAnimationValues(
+                rotation.magnitude * Mathf.Sign(InputManager.Instance.MoveInput.x), 
+                movement.magnitude * Mathf.Sign(InputManager.Instance.MoveInput.y) * (_playerStateMachine.IsSprinting ? 1 : .5f)
+            );
         }
 
         private void CheckForInteractables()
         {
-            if (closestInteractable != null)
-            {
-                InputManager.Instance.InteractEvent -= closestInteractable.Interact;
-                InputManager.Instance.InteractEvent -= FaceInteractable;
-            }
+            InputManager.Instance.ResetInteract();
 
             Collider[] collisions = Physics.OverlapSphere(_playerStateMachine.transform.position, _playerStateMachine.InteractionRange);
 

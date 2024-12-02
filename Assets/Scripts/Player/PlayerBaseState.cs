@@ -27,14 +27,25 @@ namespace NoName
             Move(Vector3.zero, deltaTime);
         }
 
+        protected void Rotate(Vector3 rotation, float deltaTime)
+        {
+            _playerStateMachine.transform.Rotate(rotation * deltaTime);
+        }
+
         protected Vector3 CalculateMovement()
         {
-            Vector3 movement = InputManager.Instance.MoveInput.x * _playerStateMachine.MainCameraTransform.right;
-            movement += InputManager.Instance.MoveInput.y * _playerStateMachine.MainCameraTransform.forward;
+            Vector3 movement = InputManager.Instance.MoveInput.y * _playerStateMachine.transform.forward;
             movement.y = 0f;
             movement.Normalize();
 
             return movement;
+        }
+
+        protected Vector3 CalculateRotation()
+        {
+            float rotation = InputManager.Instance.MoveInput.x;
+
+            return new Vector3(0, rotation, 0).normalized;
         }
 
         protected void BackToLocomotion()

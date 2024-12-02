@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
+  m_Name: Dialogue_02_Sample
+  m_EditorClassIdentifier: 
+  _id: bad5ff9e-d355-4fda-a84a-50b22702c0bb
+  _rootNode: {fileID: 7081797474500484014}
+  _nodes:
+  - {fileID: 7081797474500484014}
+  - {fileID: 7678175329394773898}
+  - {fileID: 2104215023769288072}
+  _maxCollectableClues: 1
+--- !u!114 &2104215023769288072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 24782225-cb22-48dd-b5ae-ba41fc84db84
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: Said he was acting strangely, like he was hiding something.
+  _children: []
+  Rect:
+    serializedVersion: 2
+    x: 543
+    y: 97
+    width: 200
+    height: 150
+  _dialogueClues: []
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+--- !u!114 &7081797474500484014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 9ef66e0a-de56-4623-8d37-65f0aa9e59dc
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: Have you seen Yumi lately?
+  _children:
+  - b698c7e7-295e-457a-be02-08f7434fa323
+  Rect:
+    serializedVersion: 2
+    x: 26
+    y: 96
+    width: 200
+    height: 150
+  _dialogueClues: []
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+--- !u!114 &7678175329394773898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: b698c7e7-295e-457a-be02-08f7434fa323
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: She mentioned something about a man at the Shibuya Crossing.
+  _children:
+  - 24782225-cb22-48dd-b5ae-ba41fc84db84
+  Rect:
+    serializedVersion: 2
+    x: 293
+    y: 97
+    width: 200
+    height: 150
+  _dialogueClues:
+  - _id: 85a14094-02c3-4415-b063-fefab8c42b1b
+    _type: 4
+    _word: Shibuya Crossing
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
