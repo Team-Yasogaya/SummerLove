@@ -16,10 +16,10 @@ MonoBehaviour:
   _isCinematicNode: 0
   _text: I heard someone talking about a suspicious person at the market.
   _children:
-  - 32d7ef9f-df84-4221-bf59-ac0d84519cf0
+  - d470abbc-b63c-4d8d-a31a-bd2252845026
   Rect:
     serializedVersion: 2
-    x: 263
+    x: 262
     y: 91
     width: 200
     height: 150
@@ -61,8 +61,8 @@ MonoBehaviour:
   _children: []
   Rect:
     serializedVersion: 2
-    x: 715
-    y: 96
+    x: 536
+    y: 90
     width: 200
     height: 150
   _dialogueClues:
@@ -100,7 +100,6 @@ MonoBehaviour:
   - {fileID: 1568202402178229489}
   - {fileID: -6838940367088962907}
   - {fileID: -3537099524684931240}
-  - {fileID: 4633822485124343124}
   _maxCollectableClues: 2
 --- !u!114 &1568202402178229489
 MonoBehaviour:
@@ -142,40 +141,3 @@ MonoBehaviour:
     _predicate: 
     _parameters: []
   _videoClip: {fileID: 0}
---- !u!114 &4633822485124343124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
-  m_Name: 32d7ef9f-df84-4221-bf59-ac0d84519cf0
-  m_EditorClassIdentifier: 
-  _isPlayerSpeaking: 0
-  _isCinematicNode: 1
-  _text: VIDEO
-  _children:
-  - d470abbc-b63c-4d8d-a31a-bd2252845026
-  Rect:
-    serializedVersion: 2
-    x: 486
-    y: 91
-    width: 200
-    height: 150
-  _dialogueClues: []
-  _onEnterActions: []
-  _onExitActions: []
-  _onEnterAnimation: 
-  _onExitAnimation: 
-  _condition:
-    _conditionType: 0
-    _itemId: 
-    _quantity: 1
-    _undeadIndex: 0
-    _appraisalValue: 0
-    _predicate: 
-    _parameters: []
-  _videoClip: {fileID: 32900000, guid: 9425eec2bd811154688d1e54f4b87081, type: 3}

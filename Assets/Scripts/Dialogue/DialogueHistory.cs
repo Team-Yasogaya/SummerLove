@@ -1,10 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using GameDevTV.Saving;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace NoName {
-    public class DialogueHistory : MonoBehaviour
+    public class DialogueHistory : MonoBehaviour, IJsonSaveable
     {
         public static DialogueHistory Instance;
 
@@ -14,20 +14,12 @@ namespace NoName {
             public Dialogue dialogue;
             public Talker talker;
             public List<DialogueClue> collectedClues;
-
-            //public bool AllCluesCollected
-            //{
-            //    get
-            //    {
-            //        return collectedClues.
-            //    }
-            //}
         }
 
-        [SerializeField] private List<DialogueRecord> _registeredDialogues;
+        [SerializeField] List<DialogueRecord> _registeredDialogues;
 
-        private Dictionary<Dialogue, DialogueRecord> _cachedDialogues;
-        private List<Talker> _talkerSupportList;
+        private Dictionary<Dialogue, DialogueRecord> cachedDialogues;
+        private List<Talker> talkerSupportList;
 
         public List<DialogueRecord> RegisteredDialogues 
         { 
@@ -46,12 +38,12 @@ namespace NoName {
         {
             get
             {
-                if (_cachedDialogues == null)
+                if (cachedDialogues == null)
                 {
-                    _cachedDialogues = new();
+                    cachedDialogues = new();
                 }
 
-                return _cachedDialogues;
+                return cachedDialogues;
             }
         }
 
@@ -144,20 +136,30 @@ namespace NoName {
 
         public IEnumerable<Talker> GetAllRegisteredTalkers()
         {
-            if (_talkerSupportList == null)
+            if (talkerSupportList == null)
             {
-                _talkerSupportList = new();
+                talkerSupportList = new();
             }
 
-            _talkerSupportList.Clear();
+            talkerSupportList.Clear();
 
             foreach (var record in RegisteredDialogues)
             {
-                if (_talkerSupportList.Contains(record.talker)) continue;
+                if (talkerSupportList.Contains(record.talker)) continue;
 
-                _talkerSupportList.Add(record.talker);
+                talkerSupportList.Add(record.talker);
                 yield return record.talker;
             }
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

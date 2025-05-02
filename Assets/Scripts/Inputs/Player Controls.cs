@@ -82,6 +82,15 @@ namespace NoName
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""e18cdcc4-4cc5-4f06-bbdc-54190407013b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,17 @@ namespace NoName
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcdda8c6-1383-46a0-9dbe-359d339125a3"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -375,6 +395,7 @@ namespace NoName
             m_Player_Dialogues = m_Player.FindAction("Dialogues", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+            m_Player_Save = m_Player.FindAction("Save", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
@@ -445,6 +466,7 @@ namespace NoName
         private readonly InputAction m_Player_Dialogues;
         private readonly InputAction m_Player_Inventory;
         private readonly InputAction m_Player_Pause;
+        private readonly InputAction m_Player_Save;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
@@ -455,6 +477,7 @@ namespace NoName
             public InputAction @Dialogues => m_Wrapper.m_Player_Dialogues;
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
+            public InputAction @Save => m_Wrapper.m_Player_Save;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -482,6 +505,9 @@ namespace NoName
                     @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                     @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                     @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                    @Save.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSave;
+                    @Save.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSave;
+                    @Save.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSave;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -504,6 +530,9 @@ namespace NoName
                     @Pause.started += instance.OnPause;
                     @Pause.performed += instance.OnPause;
                     @Pause.canceled += instance.OnPause;
+                    @Save.started += instance.OnSave;
+                    @Save.performed += instance.OnSave;
+                    @Save.canceled += instance.OnSave;
                 }
             }
         }
@@ -583,6 +612,7 @@ namespace NoName
             void OnDialogues(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
+            void OnSave(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameDevTV.Saving;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace NoName.Inventory
 {
-    public class InventoryManager : MonoBehaviour, IPredicateEvaluator
+    public class InventoryManager : MonoBehaviour, IPredicateEvaluator, IJsonSaveable
     {
         public static InventoryManager Instance { get; private set; }
 
@@ -16,7 +18,7 @@ namespace NoName.Inventory
             public int quantity;
         }
 
-        [SerializeField] private InventorySlot[] _slots;
+        [SerializeField] InventorySlot[] _slots;
 
         public static InventorySlot[] Slots => Instance._slots;
 
@@ -31,6 +33,7 @@ namespace NoName.Inventory
             }
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
@@ -151,19 +154,54 @@ namespace NoName.Inventory
 
         public bool? Evaluate(string predicateFunctionName, string[] parameters)
         {
-            switch (predicateFunctionName)
+            return predicateFunctionName switch
             {
-                case "HasInventoryItem":
-                    return HasInventoryItem(parameters[0]);
-
-                default:
-                    return null;
-            }
+                "HasInventoryItem" => HasInventoryItem(parameters[0]),
+                _ => null,
+            };
         }
 
         private bool HasInventoryItem(string itemId)
         {
             return FindItemInInventory(ItemSO.GetFromId(itemId)) >= 0;
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            JObject state = new JObject();
+            IDictionary<string, JToken> stateDict = state;
+            for (int i = 0; i < _slots.Length; i++)
+            {
+                if (_slots[i].item != null)
+                {
+                    stateDict[i.ToString()] = new JObject
+                    {
+                        ["itemId"] = _slots[i].item.Id,
+                        ["quantity"] = _slots[i].quantity
+                    };
+                }
+            }
+
+            return state;
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            JObject stateDict = state.ToObject<JObject>();
+            foreach (var slotState in stateDict)
+            {
+                int slotIndex = int.Parse(slotState.Key);
+                JObject itemState = slotState.Value.ToObject<JObject>();
+                string itemId = itemState["itemId"].ToString();
+                int quantity = itemState["quantity"].ToObject<int>();
+
+                ItemSO item = ItemSO.GetFromId(itemId);
+                if (item != null)
+                {
+                    _slots[slotIndex].item = item;
+                    _slots[slotIndex].quantity = quantity;
+                }
+            }
         }
     }
 }

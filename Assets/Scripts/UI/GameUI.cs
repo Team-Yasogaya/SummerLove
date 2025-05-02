@@ -11,17 +11,19 @@ namespace NoName
     {
         public static GameUI Instance { get; private set; }
 
-        [SerializeField] private OverworldUI _overworldUI;
-        [SerializeField] private DialoguePromptUI _dialoguePromptUI;
-        [SerializeField] private ConfirmationModalUI _confirmationModalUI;
-        [SerializeField] private DeductionTableUI _deductionTableUI;
-        [SerializeField] private DialogueLibraryUI _dialogueLibraryUI;
-        [SerializeField] private InventoryUI _inventoryUI;
-        [SerializeField] private VideoPlayerUI _videoPlayerUI;
+        [SerializeField] StartMenuUI _startMenuUI;
+        [SerializeField] OverworldUI _overworldUI;
+        [SerializeField] DialoguePromptUI _dialoguePromptUI;
+        [SerializeField] ConfirmationModalUI _confirmationModalUI;
+        [SerializeField] DeductionTableUI _deductionTableUI;
+        [SerializeField] DialogueLibraryUI _dialogueLibraryUI;
+        [SerializeField] InventoryUI _inventoryUI;
+        [SerializeField] VideoPlayerUI _videoPlayerUI;
 
         [Header("Transitions")]
         [SerializeField] TransitionUI _deductionTimeTransition;
 
+        public static StartMenuUI StartMenu { get { return Instance._startMenuUI; } }
         public static OverworldUI OverworldUI { get { return Instance._overworldUI; } }
         public static DialoguePromptUI DialoguePrompt { get { return Instance._dialoguePromptUI; } }
         public static ConfirmationModalUI ConfirmationModal { get { return Instance._confirmationModalUI; } }

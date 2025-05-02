@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameDevTV.Saving;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace NoName
 {
-    public class PlayerStateMachine : StateMachine
+    public class PlayerStateMachine : StateMachine, IJsonSaveable
     {
         [Header("Character Parameters")]
         [SerializeField] private float _runningSpeed;
@@ -75,6 +77,27 @@ namespace NoName
                 AnimatorManager.Animator.SetFloat(AnimationNames.HORIZONTAL, horizontal, _animationDampTime, Time.deltaTime);
                 AnimatorManager.Animator.SetFloat(AnimationNames.VERTICAL, vertical, _animationDampTime, Time.deltaTime);
             }
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            JObject state = new JObject();
+            IDictionary<string, JToken> stateDict = state;
+            stateDict.Add("position", new JArray(transform.position.x, transform.position.y, transform.position.z));
+            stateDict.Add("rotation", new JArray(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w));
+            return state;
+        }
+
+        public void RestoreFromJToken(JToken s)
+        {
+            JObject state = s.ToObject<JObject>();
+            JArray position = state["position"].ToObject<JArray>();
+            JArray rotation = state["rotation"].ToObject<JArray>();
+
+            Vector3 pos = new(position[0].ToObject<float>(), position[1].ToObject<float>(), position[2].ToObject<float>());
+            Quaternion rot = new(rotation[0].ToObject<float>(), rotation[1].ToObject<float>(), rotation[2].ToObject<float>(), rotation[3].ToObject<float>());
+
+            transform.SetPositionAndRotation(pos, rot);
         }
 
 #if UNITY_EDITOR

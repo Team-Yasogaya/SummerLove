@@ -34,10 +34,12 @@ public class CinematicManager : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
 
-        while (GameUI.VideoPlayer.VideoPlayer.isPlaying)
+        while (GameUI.VideoPlayer.IsVideoPlaying())
         {
             yield return null;
         }
+
+        yield return GameUI.VideoPlayer.FadeOut();
 
         if (OnCinematicEnded == null)
         {

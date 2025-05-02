@@ -24,6 +24,7 @@ namespace NoName
         public bool InventoryInput { get; private set; }
         public bool DialoguesInput { get; private set; }
         public bool PauseInput { get; private set; }
+        public bool SaveInput { get; private set; }
 
         private void Awake()
         {
@@ -48,6 +49,8 @@ namespace NoName
 
         private void OnDisable()
         {
+            if (_playerControls == null) return;
+            
             _playerControls.Player.Disable();
             _playerControls.UI.Disable();
         }
@@ -111,6 +114,24 @@ namespace NoName
         public void OnPause(InputAction.CallbackContext context)
         {
             PauseInput = context.performed;
+        }
+
+        public void OnSave(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                SaveInput = true;
+            }
+        }
+
+        public bool ConsumeSaveInput()
+        {
+            if (SaveInput)
+            {
+                SaveInput = false;
+                return true;
+            }
+            return false;
         }
 
         public void OnSkip(InputAction.CallbackContext context)

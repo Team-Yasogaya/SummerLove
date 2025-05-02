@@ -17,9 +17,9 @@ namespace NoName
             Culprit = 4
         }
 
-        [SerializeField] private string _id;
-        [SerializeField] private ClueType _type;
-        [SerializeField] private string _word;
+        [SerializeField] string _id;
+        [SerializeField] ClueType _type;
+        [SerializeField] string _word;
 
 
         public string Id => _id;
