@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8674516954774672473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: c81e112e-8a1b-40f4-94c9-6e90df47681e
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: Rumor has it a woman was seen acting suspiciously near the zoo.
+  _children:
+  - 66b33351-e822-48a9-a9f5-d46cd1c98edc
+  Rect:
+    serializedVersion: 2
+    x: 252
+    y: 11
+    width: 200
+    height: 150
+  _dialogueClues:
+  - ID: CULPRIT_01
+    Word: zoo
+    _type: 4
+  - ID: CULPRIT_02
+    Word: woman
+    _type: 4
+--- !u!114 &-73386710716332964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: db417db1-67ec-4849-b190-a0b005499f6c
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: Did you notice anything strange here last night?
+  _children:
+  - c81e112e-8a1b-40f4-94c9-6e90df47681e
+  Rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 150
+  _dialogueClues: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
+  m_Name: Dialogue_03_Sample
+  m_EditorClassIdentifier: 
+  _rootNode: {fileID: -73386710716332964}
+  _nodes:
+  - {fileID: -73386710716332964}
+  - {fileID: -8674516954774672473}
+  - {fileID: 2315560084336811866}
+  _maxCollectableClues: 2
+--- !u!114 &2315560084336811866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 66b33351-e822-48a9-a9f5-d46cd1c98edc
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _text: They say she was carrying something unusual, like a distinctive item that
+    could be a clue.
+  _children: []
+  Rect:
+    serializedVersion: 2
+    x: 502
+    y: 11
+    width: 200
+    height: 150
+  _dialogueClues:
+  - ID: WEAPON_01
+    Word: distinctive item
+    _type: 1
