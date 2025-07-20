@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace NoName
@@ -9,22 +7,12 @@ namespace NoName
         [SerializeField] private Npc _npc;
         [SerializeField] private Dialogue _npcDialogue;
 
-        private Collider _collider;
-        private SpriteRenderer _spriteRenderer;
-        private Talker _talker;
+        private Collider interactionCollider;
 
         private void Awake()
         {
-            _collider = GetComponent<Collider>();
-            _collider.isTrigger = true;
-
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            _talker = GetComponent<Talker>();
-        }
-
-        private void Start()
-        {
-            
+            interactionCollider = GetComponent<Collider>();
+            interactionCollider.isTrigger = true;
         }
 
         public override void ShowPrompt()
@@ -41,7 +29,7 @@ namespace NoName
         {
             FacePlayer(GameManager.Instance.Player);
 
-            _talker.StartDialogue(_npcDialogue);
+            DialogueManager.Instance.StartDialogue(_npcDialogue);
         }
 
         private void FacePlayer(PlayerStateMachine playerManager)

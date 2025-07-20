@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue_02_Sample
   m_EditorClassIdentifier: 
   _id: bad5ff9e-d355-4fda-a84a-50b22702c0bb
+  _talker: {fileID: 11400000, guid: 7d066b30d0e1a924bb6c6a48adc6702f, type: 2}
   _rootNode: {fileID: 7081797474500484014}
   _nodes:
   - {fileID: 7081797474500484014}
@@ -32,6 +33,7 @@ MonoBehaviour:
   m_Name: 24782225-cb22-48dd-b5ae-ba41fc84db84
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
+  _isCinematicNode: 0
   _text: Said he was acting strangely, like he was hiding something.
   _children: []
   Rect:
@@ -40,7 +42,7 @@ MonoBehaviour:
     y: 97
     width: 200
     height: 150
-  _dialogueClues: []
+  _clues: []
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
@@ -53,6 +55,7 @@ MonoBehaviour:
     _appraisalValue: 0
     _predicate: 
     _parameters: []
+  _videoClip: {fileID: 0}
 --- !u!114 &7081797474500484014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +69,7 @@ MonoBehaviour:
   m_Name: 9ef66e0a-de56-4623-8d37-65f0aa9e59dc
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
+  _isCinematicNode: 0
   _text: Have you seen Yumi lately?
   _children:
   - b698c7e7-295e-457a-be02-08f7434fa323
@@ -75,7 +79,7 @@ MonoBehaviour:
     y: 96
     width: 200
     height: 150
-  _dialogueClues: []
+  _clues: []
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
@@ -88,6 +92,7 @@ MonoBehaviour:
     _appraisalValue: 0
     _predicate: 
     _parameters: []
+  _videoClip: {fileID: 0}
 --- !u!114 &7678175329394773898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +106,7 @@ MonoBehaviour:
   m_Name: b698c7e7-295e-457a-be02-08f7434fa323
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
+  _isCinematicNode: 0
   _text: She mentioned something about a man at the Shibuya Crossing.
   _children:
   - 24782225-cb22-48dd-b5ae-ba41fc84db84
@@ -110,10 +116,8 @@ MonoBehaviour:
     y: 97
     width: 200
     height: 150
-  _dialogueClues:
-  - _id: 85a14094-02c3-4415-b063-fefab8c42b1b
-    _type: 4
-    _word: Shibuya Crossing
+  _clues:
+  - {fileID: 11400000, guid: 86b4e47f4e1983549b3aa8200fb4ce97, type: 2}
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
@@ -126,3 +130,4 @@ MonoBehaviour:
     _appraisalValue: 0
     _predicate: 
     _parameters: []
+  _videoClip: {fileID: 0}

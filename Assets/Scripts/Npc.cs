@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace NoName
@@ -6,8 +7,22 @@ namespace NoName
 
     public class Npc : ScriptableObject
     {
-        [Header("Interaction")]
-        [SerializeField] private string _promptText;
+        [Header("Data")]
+        [SerializeField] string _id;
+        [SerializeField] string _name;
 
+        [Header("Interaction")]
+        [SerializeField] string _promptText;
+
+        public string Id => _id;
+        public string Name => _name;
+
+        void OnValidate()
+        {
+            if (string.IsNullOrEmpty(_id))
+            {
+                _id = Guid.NewGuid().ToString();
+            }
+        }
     }
 }

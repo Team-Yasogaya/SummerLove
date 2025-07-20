@@ -8,14 +8,14 @@ namespace NoName
 {
     public class DialogueLibraryUI : BaseMenuUI
     {
-        [SerializeField] private RectTransform _talkersContainer;
-        [SerializeField] private RectTransform _dialoguesContainer;
-        [SerializeField] private Button _closeButton;
+        [SerializeField] RectTransform _talkersContainer;
+        [SerializeField] RectTransform _dialoguesContainer;
+        [SerializeField] Button _closeButton;
 
-        [SerializeField] private TalkerUI _talkerUIPrefab;
-        [SerializeField] private RewatchDialogueUI _rewatchDialoguePrefab;
+        [SerializeField] TalkerUI _talkerUIPrefab;
+        [SerializeField] RewatchDialogueUI _rewatchDialoguePrefab;
 
-        private Talker _currentSelectedTalker;
+        private Npc currentSelectedTalker;
 
         private void Start()
         {
@@ -37,10 +37,10 @@ namespace NoName
         {
             ClearTalkersList();
 
-            foreach (Talker talker in DialogueHistory.Instance.GetAllRegisteredTalkers())
+            foreach (Npc talkerNpc in DialogueHistory.Instance.GetAllRegisteredTalkers())
             {
                 TalkerUI talkerUI = Instantiate(_talkerUIPrefab, _talkersContainer);
-                talkerUI.InitializeTalkerUI(talker);
+                talkerUI.InitializeTalkerUI(talkerNpc);
             }
         }
 
@@ -52,13 +52,13 @@ namespace NoName
             }
         }
 
-        public void OpenDialogueList(Talker talker)
+        public void OpenDialogueList(Npc talkerNpc)
         {
             ClearDialogueList();
 
-            _currentSelectedTalker = talker;
+            currentSelectedTalker = talkerNpc;
 
-            foreach (var record in DialogueHistory.Instance.GetRecordsByTalker(talker))
+            foreach (var record in DialogueHistory.Instance.GetRecordsByTalker(talkerNpc))
             {
                 RewatchDialogueUI rewarch = Instantiate(_rewatchDialoguePrefab, _dialoguesContainer);
                 rewarch.InitializeRewatchDialogue(record.dialogue);
@@ -75,7 +75,7 @@ namespace NoName
 
         public void ReloadDialogueConfirmation(Dialogue dialogue)
         {
-            GameUI.ConfirmationModal.Show("Rewatch this dialogue with " + _currentSelectedTalker.Name + "?");
+            GameUI.ConfirmationModal.Show("Rewatch this dialogue with " + currentSelectedTalker.Name + "?");
             GameUI.ConfirmationModal.OnConfirm += () => ReloadDialogue(dialogue);
         }
 
@@ -83,8 +83,8 @@ namespace NoName
         {
             Close();
 
-            _currentSelectedTalker.RestartDialogueFromHistory(dialogue);
-            _currentSelectedTalker.OnEndDialogue += GameUI.OpenDialogueLibrary;
+            DialogueManager.Instance.RestartDialogueFromHistory(dialogue);
+            DialogueManager.Instance.OnEndDialogue += GameUI.OpenDialogueLibrary;
         }
     }
 }

@@ -1,31 +1,38 @@
 using System;
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace NoName
 {
-    public class Talker : MonoBehaviour
+    public class DialogueManager : MonoBehaviour
     {
-        [SerializeField] string _talkerName;
+        public static DialogueManager Instance;
 
-        private DialogueTrigger _dialogueTrigger;
-        private NpcManager _character;
-
-        private Dialogue _currentDialogue;
-        private DialogueNode _currentNode;
+        private Dialogue currentDialogue;
+        private DialogueNode currentNode;
 
         private event Action OnEnterNode;
         private event Action OnExitNode;
         public event Action OnStartDialogue;
         public event Action OnEndDialogue;
 
-        public string Name => _talkerName;
-
-        private void Awake()
+        void Awake()
         {
-            _dialogueTrigger = GetComponent<DialogueTrigger>();
-            _character = GetComponent<NpcManager>();
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        void Start()
+        {
+
         }
 
         private void OnEnable()
@@ -48,17 +55,17 @@ namespace NoName
 
         public void StartDialogue(Dialogue dialogue, bool saveOnRecords = false)
         {
-            _currentDialogue = dialogue;
-            _currentDialogue.Initialize();
+            currentDialogue = dialogue;
+            currentDialogue.Initialize();
 
-            _currentNode = dialogue.RootNode;
+            currentNode = dialogue.RootNode;
 
-            DialogueHistory.Instance.AddDialogueToHistory(dialogue, this);
+            DialogueHistory.Instance.AddDialogueToHistory(dialogue);
 
             GameUI.DialoguePrompt.Open();
             GameUI.DialoguePrompt.StartDialogue(dialogue);
             GameUI.DialoguePrompt.UpdateCluesInkCounter();
-            GameUI.DialoguePrompt.AddNode(_currentNode);
+            GameUI.DialoguePrompt.AddNode(currentNode);
             GameUI.DialoguePrompt.OnNodeFinished += Next;
 
             OnStartDialogue?.Invoke();
@@ -68,14 +75,15 @@ namespace NoName
 
         public void RestartDialogueFromHistory(Dialogue dialogue, bool saveOnRecords = false)
         {
-            _currentDialogue = dialogue;
-            _currentDialogue.Initialize();
+            currentDialogue = dialogue;
+            currentDialogue.Initialize();
 
-            _currentNode = dialogue.RootNode;
+            currentNode = dialogue.RootNode;
 
             GameUI.DialoguePrompt.Open();
+            GameUI.DialoguePrompt.StartDialogue(dialogue);
             GameUI.DialoguePrompt.UpdateCluesInkCounter();
-            GameUI.DialoguePrompt.AddNode(_currentNode);
+            GameUI.DialoguePrompt.AddNode(currentNode);
             GameUI.DialoguePrompt.OnNodeFinished += Next;
 
             OnStartDialogue?.Invoke();
@@ -91,7 +99,7 @@ namespace NoName
         private void Next(int childIndex)
         {
             GameUI.DialoguePrompt.OnNodeFinished -= Next;
-            DialogueNode[] availableNodes = FilterOnConditions(_currentDialogue.ChildrenNodes(_currentNode)).ToArray();
+            DialogueNode[] availableNodes = FilterOnConditions(currentDialogue.ChildrenNodes(currentNode)).ToArray();
 
             if (availableNodes.Length > 0)
             {
@@ -116,8 +124,8 @@ namespace NoName
 
         private void UpdateNode(DialogueNode node)
         {
-            _currentNode = node;
-            GameUI.DialoguePrompt.AddNode(_currentNode);
+            currentNode = node;
+            GameUI.DialoguePrompt.AddNode(currentNode);
             GameUI.DialoguePrompt.OnNodeFinished += Next;
 
             OnEnterNode?.Invoke();
@@ -125,7 +133,7 @@ namespace NoName
 
         private void UpdateCinematicNode(DialogueNode node)
         {
-            _currentNode = node;
+            currentNode = node;
             CinematicManager.Instance.PlayCinematic(node.VideoClip);
             CinematicManager.Instance.OnCinematicEnded += Next;
 
@@ -142,8 +150,8 @@ namespace NoName
 
             GameUI.DialoguePrompt.Close();
 
-            _currentDialogue = null;
-            _currentNode = null;
+            currentDialogue = null;
+            currentNode = null;
         }
 
         private IEnumerable<DialogueNode> FilterOnConditions(IEnumerable<DialogueNode> inputList)
@@ -159,32 +167,28 @@ namespace NoName
 
         private void TriggerEnterNodeActions()
         {
-            foreach (var action in _currentNode.OnEnterActions)
+            foreach (var action in currentNode.OnEnterActions)
             {
-                DialogueTrigger.Trigger(action, _dialogueTrigger);
+                DialogueTrigger.Trigger(action, null);
             }
         }
 
         private void TriggerExitNodeActions()
         {
-            foreach (var action in _currentNode.OnExitActions)
+            foreach (var action in currentNode.OnExitActions)
             {
-                DialogueTrigger.Trigger(action, _dialogueTrigger);
+                DialogueTrigger.Trigger(action, null);
             }
         }
 
         private void TriggerEnterNodeAnimation()
         {
-            if (string.IsNullOrEmpty(_currentNode.OnEnterAnimation)) return;
-
-            //_character.PlayOverrideAnimation(_currentNode.OnEnterAnimation);
+            if (string.IsNullOrEmpty(currentNode.OnEnterAnimation)) return;
         }
 
         private void TriggerExitNodeAnimation()
         {
-            if (string.IsNullOrEmpty(_currentNode.OnExitAnimation)) return;
-
-            //_character.PlayOverrideAnimation(_currentNode.OnExitAnimation);
+            if (string.IsNullOrEmpty(currentNode.OnExitAnimation)) return;
         }
     }
 }

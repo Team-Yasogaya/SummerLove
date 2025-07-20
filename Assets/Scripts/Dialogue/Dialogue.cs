@@ -9,13 +9,16 @@ namespace NoName
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue", order = 0)]
     public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
-        [SerializeField] private string _id;
-        [SerializeField] private DialogueNode _rootNode;
-        [SerializeField] private List<DialogueNode> _nodes = new ();
-        [SerializeField] private int _maxCollectableClues;
+        [SerializeField] string _id;
+        [SerializeField] Npc _talker;
+        [SerializeField] DialogueNode _rootNode;
+        [SerializeField] List<DialogueNode> _nodes = new ();
+        [SerializeField] int _maxCollectableClues;
 
         private Dictionary<string, DialogueNode> _nodeLookup = new();
 
+        public string Id { get { return _id; } }
+        public Npc Talker { get { return _talker; }}
         public IEnumerable<DialogueNode> Nodes { get { return _nodes; } }
         public DialogueNode RootNode { get { return _rootNode; } }
         public int MaxCollectableClues { get { return _maxCollectableClues; } }

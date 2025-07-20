@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6838940367088962907
+--- !u!114 &-8674516954774672473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,39 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
-  m_Name: 5dcae135-5539-4bca-ad0a-839764c1acb2
+  m_Name: c81e112e-8a1b-40f4-94c9-6e90df47681e
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
   _isCinematicNode: 0
-  _text: I heard someone talking about a suspicious person at the market.
+  _text: Rumor has it a woman was seen acting suspiciously near the zoo.
   _children:
-  - d470abbc-b63c-4d8d-a31a-bd2252845026
+  - 66b33351-e822-48a9-a9f5-d46cd1c98edc
   Rect:
     serializedVersion: 2
-    x: 262
-    y: 91
+    x: 491
+    y: 85
     width: 200
     height: 150
-  _dialogueClues:
-  - _id: 73d5d937-f11c-488b-886a-6c076939966b
-    _type: 4
-    _word: market
+  _clues:
+  - {fileID: 11400000, guid: ee03117a456ce4a468f36386c3e4ab52, type: 2}
+  - {fileID: 11400000, guid: 11687518704900041a87e2ae054edb5c, type: 2}
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
   _onExitAnimation: 
   _condition:
     _conditionType: 0
-    _itemId: dad7537c-dfb6-4a4f-8580-f16d7da843ff
+    _itemId: 
     _quantity: 1
     _undeadIndex: 0
     _appraisalValue: 0
-    _predicate: HasInventoryItem
-    _parameters:
-    - dad7537c-dfb6-4a4f-8580-f16d7da843ff
-    - 
+    _predicate: 
+    _parameters: []
   _videoClip: {fileID: 0}
---- !u!114 &-3537099524684931240
+--- !u!114 &-73386710716332964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,23 +49,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
-  m_Name: d470abbc-b63c-4d8d-a31a-bd2252845026
+  m_Name: db417db1-67ec-4849-b190-a0b005499f6c
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
   _isCinematicNode: 0
-  _text: We need to find that person. They mentioned something about a knife found
-    in the dirt.
-  _children: []
+  _text: Did you notice anything strange here last night?
+  _children:
+  - fd4248d4-55cb-410e-a185-ae64b545eb5b
   Rect:
     serializedVersion: 2
-    x: 536
-    y: 90
+    x: 34
+    y: 80
     width: 200
     height: 150
-  _dialogueClues:
-  - _id: b7130e95-4982-44c7-a3d0-a256d2e8f02f
-    _type: 1
-    _word: knife
+  _clues: []
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
@@ -92,16 +86,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e958afbc3ca429f4e9f3ccbf6dda2656, type: 3}
-  m_Name: Dialogue_01_Sample
+  m_Name: Dialogue_03_Sample
   m_EditorClassIdentifier: 
-  _id: c75c08ae-7e1a-42b7-af0d-34309fdfe8e0
-  _rootNode: {fileID: 1568202402178229489}
+  _id: 79aa2758-47fc-4163-a63a-c35994acf1b4
+  _talker: {fileID: 11400000, guid: 78bf5a15b8610b04db936f55e042b794, type: 2}
+  _rootNode: {fileID: -73386710716332964}
   _nodes:
-  - {fileID: 1568202402178229489}
-  - {fileID: -6838940367088962907}
-  - {fileID: -3537099524684931240}
+  - {fileID: -73386710716332964}
+  - {fileID: -8674516954774672473}
+  - {fileID: 2315560084336811866}
+  - {fileID: 1975949063713901921}
   _maxCollectableClues: 2
---- !u!114 &1568202402178229489
+--- !u!114 &1975949063713901921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,23 +107,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
-  m_Name: 5f35ab3e-eb99-49c3-9b84-ee6606d045a9
+  m_Name: fd4248d4-55cb-410e-a185-ae64b545eb5b
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
-  _isCinematicNode: 0
-  _text: Hey, you were here last night, right?
+  _isCinematicNode: 1
+  _text: VIDEO
   _children:
-  - 5dcae135-5539-4bca-ad0a-839764c1acb2
+  - c81e112e-8a1b-40f4-94c9-6e90df47681e
   Rect:
     serializedVersion: 2
-    x: 15
-    y: 86
+    x: 260
+    y: 82
     width: 200
     height: 150
-  _dialogueClues:
-  - _id: f1d15bf8-5df4-4337-b4c5-358ebd13924e
-    _type: 3
-    _word: last night
+  _clues: []
   _onEnterActions: []
   _onExitActions: []
   _onEnterAnimation: 
@@ -135,7 +128,45 @@ MonoBehaviour:
   _condition:
     _conditionType: 0
     _itemId: 
-    _quantity: 0
+    _quantity: 1
+    _undeadIndex: 0
+    _appraisalValue: 0
+    _predicate: 
+    _parameters: []
+  _videoClip: {fileID: 32900000, guid: 81067ad59371f4644a7f71bf2ac21a0d, type: 3}
+--- !u!114 &2315560084336811866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f30a00ba967f784a8f5e28c2f3baa4d, type: 3}
+  m_Name: 66b33351-e822-48a9-a9f5-d46cd1c98edc
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _isCinematicNode: 0
+  _text: They say she was carrying something unusual, like a distinctive item that
+    could be a clue.
+  _children: []
+  Rect:
+    serializedVersion: 2
+    x: 720
+    y: 86
+    width: 200
+    height: 150
+  _clues:
+  - {fileID: 11400000, guid: ce4787e8b2f802f43a0f1da4691d187c, type: 2}
+  _onEnterActions: []
+  _onExitActions: []
+  _onEnterAnimation: 
+  _onExitAnimation: 
+  _condition:
+    _conditionType: 0
+    _itemId: 
+    _quantity: 1
     _undeadIndex: 0
     _appraisalValue: 0
     _predicate: 

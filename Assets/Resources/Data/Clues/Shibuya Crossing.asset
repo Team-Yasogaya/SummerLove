@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d98900aeaefd804ebc6740b3a42e1c6, type: 3}
-  m_Name: NPC Sample
+  m_Script: {fileID: 11500000, guid: 3e54181b71d9ca4428149e872a68e5b2, type: 3}
+  m_Name: Shibuya Crossing
   m_EditorClassIdentifier: 
-  _promptText: 
-  _npcDialogue: {fileID: 11400000, guid: b21a85cd591131b42a6cda6719f0905a, type: 2}
+  _id: 6fd3ac52-1f67-496a-b092-452ad4fecced
+  _type: 4
+  _word: Shibuya Crossing

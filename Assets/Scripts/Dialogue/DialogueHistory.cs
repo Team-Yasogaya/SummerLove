@@ -1,34 +1,32 @@
 using System.Collections.Generic;
+using System.Linq;
 using GameDevTV.Saving;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace NoName {
+namespace NoName 
+{
+    [System.Serializable]
+    public class DialogueRecord
+    {
+        public Dialogue dialogue;
+        public List<Clue> collectedClues;
+    }
+    
     public class DialogueHistory : MonoBehaviour, IJsonSaveable
     {
         public static DialogueHistory Instance;
 
-        [System.Serializable]
-        public class DialogueRecord
-        {
-            public Dialogue dialogue;
-            public Talker talker;
-            public List<DialogueClue> collectedClues;
-        }
-
         [SerializeField] List<DialogueRecord> _registeredDialogues;
 
         private Dictionary<Dialogue, DialogueRecord> cachedDialogues;
-        private List<Talker> talkerSupportList;
+        private List<Npc> talkerSupportList;
 
-        public List<DialogueRecord> RegisteredDialogues 
-        { 
+        public List<DialogueRecord> RegisteredDialogues
+        {
             get
             {
-                if (_registeredDialogues == null)
-                {
-                    _registeredDialogues = new();
-                }
+                _registeredDialogues ??= new();
 
                 return _registeredDialogues;
             }
@@ -38,10 +36,7 @@ namespace NoName {
         {
             get
             {
-                if (cachedDialogues == null)
-                {
-                    cachedDialogues = new();
-                }
+                cachedDialogues ??= new();
 
                 return cachedDialogues;
             }
@@ -60,18 +55,18 @@ namespace NoName {
             DontDestroyOnLoad(gameObject);
         }
 
-        public void AddDialogueToHistory(Dialogue dialogue, Talker talker)
+        public void AddDialogueToHistory(Dialogue dialogue)
         {
             if (GetRecordByDialogue(dialogue) != null)
             {
                 return;
             }
 
-            DialogueRecord newRecord = new DialogueRecord { dialogue = dialogue, talker = talker, collectedClues = new() };
+            DialogueRecord newRecord = new() { dialogue = dialogue, collectedClues = new() };
             RegisteredDialogues.Add(newRecord);
         }
 
-        public void AddCollectedClueToDialogue(Dialogue dialogue, DialogueClue clue)
+        public void AddCollectedClueToDialogue(Dialogue dialogue, Clue clue)
         {
             if (GetRecordByDialogue(dialogue) == null)
             {
@@ -88,11 +83,11 @@ namespace NoName {
             GetRecordByDialogue(dialogue).collectedClues.Add(clue);
         }
 
-        public void RemoveCollectedClueFromOwnerDialogue(DialogueClue clue) 
+        public void RemoveCollectedClueFromOwnerDialogue(Clue clue)
         {
             Debug.Log("Remove Collected Clue Invoked");
 
-            foreach (var record in RegisteredDialogues) 
+            foreach (var record in RegisteredDialogues)
             {
                 if (record.collectedClues.Contains(clue))
                 {
@@ -123,43 +118,93 @@ namespace NoName {
             return null;
         }
 
-        public IEnumerable<DialogueRecord> GetRecordsByTalker(Talker talker)
+        public IEnumerable<DialogueRecord> GetRecordsByTalker(Npc talkerNpc)
         {
             foreach (var record in RegisteredDialogues)
             {
-                if (record.talker.Equals(talker))
+                if (record.dialogue.Talker.Equals(talkerNpc))
                 {
                     yield return record;
                 }
             }
         }
 
-        public IEnumerable<Talker> GetAllRegisteredTalkers()
+        public IEnumerable<Npc> GetAllRegisteredTalkers()
         {
-            if (talkerSupportList == null)
-            {
-                talkerSupportList = new();
-            }
-
+            talkerSupportList ??= new();
             talkerSupportList.Clear();
 
             foreach (var record in RegisteredDialogues)
             {
-                if (talkerSupportList.Contains(record.talker)) continue;
+                if (talkerSupportList.Contains(record.dialogue.Talker)) continue;
 
-                talkerSupportList.Add(record.talker);
-                yield return record.talker;
+                talkerSupportList.Add(record.dialogue.Talker);
+                yield return record.dialogue.Talker;
             }
         }
 
         public JToken CaptureAsJToken()
         {
-            throw new System.NotImplementedException();
+            var recordsArray = new JArray();
+
+            foreach (var record in RegisteredDialogues)
+            {
+                var recordObj = new JObject
+                {
+                    ["dialogueId"] = record.dialogue.Id,
+                    ["clues"] = new JArray(record.collectedClues.Select(c => c.Id) ?? Enumerable.Empty<string>())
+                };
+
+                recordsArray.Add(recordObj);
+            }
+
+            return new JObject
+            {
+                ["dialogueRecords"] = recordsArray
+            };
         }
 
         public void RestoreFromJToken(JToken state)
         {
-            throw new System.NotImplementedException();
+            _registeredDialogues = new();
+
+            if (state["dialogueRecords"] is not JArray recordsArray) return;
+
+            var allDialogues = Resources.LoadAll<Dialogue>("Data/Dialogues").ToDictionary(d => d.Id, d => d);;
+            var allClues = Resources.LoadAll<Clue>("Data/Clues").ToDictionary(c => c.Id, c => c);
+
+            foreach (var recordToken in recordsArray)
+            {
+                var dialogueId = (string)recordToken["dialogueId"];
+                var clueIds = recordToken["clues"]?.ToObject<List<string>>() ?? new();
+
+                if (!allDialogues.TryGetValue(dialogueId, out var dialogue))
+                {
+                    Debug.LogWarning($"Dialogue with ID '{dialogueId}' not found in Resources/Data/Dialogues.");
+                    continue;
+                }
+
+                var clueList = new List<Clue>();
+                foreach (var clueId in clueIds)
+                {
+                    if (allClues.TryGetValue(clueId, out var clue))
+                    {
+                        clueList.Add(clue);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Clue with ID '{clueId}' not found in Resources/Data/Clues.");
+                    }
+                }
+
+                var record = new DialogueRecord
+                {
+                    dialogue = dialogue,
+                    collectedClues = clueList
+                };
+
+                _registeredDialogues.Add(record);
+            }
         }
     }
 }

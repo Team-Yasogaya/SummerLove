@@ -15,17 +15,17 @@ namespace NoName
             Custom,
         }
 
-        [SerializeField] private ConditionType _conditionType;
+        [SerializeField] ConditionType _conditionType;
 
-        [SerializeField] private string _itemId;
-        [SerializeField] private int _quantity = 1;
+        [SerializeField] string _itemId;
+        [SerializeField] int _quantity = 1;
 
-        [SerializeField] private int _undeadIndex;
-        [SerializeField] private int _appraisalValue;
+        [SerializeField] int _undeadIndex;
+        [SerializeField] int _appraisalValue;
 
 
-        [SerializeField] private string _predicate;
-        [SerializeField] private string[] _parameters;
+        [SerializeField] string _predicate;
+        [SerializeField] string[] _parameters;
 
         public bool Check(IEnumerable<IPredicateEvaluator> evaulators)
         {

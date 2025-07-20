@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,31 +7,30 @@ namespace NoName
 {
     public class TalkerUI : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _talkerName;
+        [SerializeField] TextMeshProUGUI _talkerName;
 
-        private Button _button;
-
-        private Talker _talker;
+        private Button button;
+        private Npc talker;
 
         private void Awake()
         {
-            _button = GetComponent<Button>();
+            button = GetComponent<Button>();
         }
 
         private void Start()
         {
-            _button.onClick.AddListener(ButtonAction);
+            button.onClick.AddListener(ButtonAction);
         }
 
-        public void InitializeTalkerUI(Talker talker)
+        public void InitializeTalkerUI(Npc talker)
         {
-            _talker = talker;
+            this.talker = talker;
             _talkerName.text = talker.Name;
         }
 
         private void ButtonAction()
         {
-            GameUI.DialogueLibrary.OpenDialogueList(_talker);
+            GameUI.DialogueLibrary.OpenDialogueList(talker);
         }
     }
 }

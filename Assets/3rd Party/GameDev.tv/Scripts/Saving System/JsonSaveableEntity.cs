@@ -26,8 +26,6 @@ namespace GameDevTV.Saving
             foreach (IJsonSaveable jsonSaveable in GetComponents<IJsonSaveable>())
             {
                 JToken token = jsonSaveable.CaptureAsJToken();
-                string component = jsonSaveable.GetType().ToString();
-                Debug.Log($"{name} Capture {component} = {token.ToString()}");
                 stateDict[jsonSaveable.GetType().ToString()] = token;
             }
             return state;
@@ -42,8 +40,6 @@ namespace GameDevTV.Saving
                 string component = jsonSaveable.GetType().ToString();
                 if (stateDict.ContainsKey(component))
                 {
-
-                    Debug.Log($"{name} Restore {component} =>{stateDict[component].ToString()}");
                     jsonSaveable.RestoreFromJToken(stateDict[component]);
                 }
             }

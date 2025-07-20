@@ -1383,7 +1383,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857688856}
-  m_LocalRotation: {x: 0.0029313578, y: 0.98190683, z: -0.18872705, w: 0.015251236}
+  m_LocalRotation: {x: 0.0029313609, y: 0.98190683, z: -0.18872707, w: 0.015251249}
   m_LocalPosition: {x: 7.78257, y: 24.904501, z: -25.307049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2258,7 +2258,6 @@ GameObject:
   - component: {fileID: 1367722392}
   - component: {fileID: 1367722391}
   - component: {fileID: 1367722390}
-  - component: {fileID: 1367722389}
   - component: {fileID: 1367722393}
   m_Layer: 0
   m_Name: NPC Sample (2)
@@ -2267,19 +2266,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1367722389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1367722388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d88c749707ca304b879a61f370a6aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _talkerName: Yamada
 --- !u!114 &1367722390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2292,7 +2278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b318651ea0314b866fd17c438bae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npc: {fileID: 11400000, guid: 39320efda84da04458d5c40cd23351c7, type: 2}
+  _npc: {fileID: 11400000, guid: 78bf5a15b8610b04db936f55e042b794, type: 2}
   _npcDialogue: {fileID: 11400000, guid: 45d30bd576de4ba4fb1443e8a418d498, type: 2}
 --- !u!65 &1367722391
 BoxCollider:
@@ -2348,7 +2334,6 @@ GameObject:
   - component: {fileID: 1382427897}
   - component: {fileID: 1382427898}
   - component: {fileID: 1382427899}
-  - component: {fileID: 1382427900}
   - component: {fileID: 1382427901}
   m_Layer: 0
   m_Name: NPC Sample
@@ -2400,19 +2385,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npc: {fileID: 11400000, guid: 39320efda84da04458d5c40cd23351c7, type: 2}
   _npcDialogue: {fileID: 11400000, guid: 78f30439c7572654ca66bcc5912b7c54, type: 2}
---- !u!114 &1382427900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382427896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d88c749707ca304b879a61f370a6aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _talkerName: Miko
 --- !u!114 &1382427901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,7 +2631,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486038067}
-  m_LocalRotation: {x: -0.08807833, y: 0.878793, z: -0.1784603, w: -0.43372455}
+  m_LocalRotation: {x: -0.08807832, y: 0.87879306, z: -0.17846031, w: -0.43372455}
   m_LocalPosition: {x: 4.2, y: 9.88, z: -12.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2748,7 +2720,6 @@ GameObject:
   - component: {fileID: 1598401088}
   - component: {fileID: 1598401087}
   - component: {fileID: 1598401086}
-  - component: {fileID: 1598401085}
   - component: {fileID: 1598401089}
   m_Layer: 0
   m_Name: NPC Sample (1)
@@ -2757,19 +2728,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1598401085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598401084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d88c749707ca304b879a61f370a6aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _talkerName: Yusuke
 --- !u!114 &1598401086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2782,7 +2740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b318651ea0314b866fd17c438bae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npc: {fileID: 11400000, guid: 39320efda84da04458d5c40cd23351c7, type: 2}
+  _npc: {fileID: 11400000, guid: 7d066b30d0e1a924bb6c6a48adc6702f, type: 2}
   _npcDialogue: {fileID: 11400000, guid: 84b9bcb2a281b8d458ac3ef23294759d, type: 2}
 --- !u!65 &1598401087
 BoxCollider:

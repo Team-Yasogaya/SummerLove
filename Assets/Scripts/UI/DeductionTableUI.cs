@@ -57,13 +57,13 @@ namespace NoName {
             }
         }
 
-        private void RemoveClueFromDeductionTableConfirmation(DialogueClue clue) 
+        private void RemoveClueFromDeductionTableConfirmation(Clue clue) 
         {
             GameUI.ConfirmationModal.Show("Are you sure you want to remove this clue?");
             GameUI.ConfirmationModal.OnConfirm += () => RemoveClueFromDeductionTable(clue);
         }
 
-        private void RemoveClueFromDeductionTable(DialogueClue clue) 
+        private void RemoveClueFromDeductionTable(Clue clue) 
         {
             DialogueHistory.Instance.RemoveCollectedClueFromOwnerDialogue(clue);
 

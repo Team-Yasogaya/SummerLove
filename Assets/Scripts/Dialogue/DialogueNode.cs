@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Video;
-using static NoName.DialogueClue;
+using static NoName.Clue;
 
 namespace NoName
 {
@@ -17,7 +17,7 @@ namespace NoName
         [SerializeField] private List<string> _children = new ();
         public Rect Rect = new Rect(0, 0, 200, 150);
 
-        [SerializeField] private List<DialogueClue> _dialogueClues = new();
+        [SerializeField] List<Clue> _clues;
 
         [Header("Trigger Actions")]
         [SerializeField] private DialogueAction[] _onEnterActions;
@@ -36,7 +36,7 @@ namespace NoName
         public bool IsPlayerSpeaking { get { return _isPlayerSpeaking; } }
         public string Text { get { return _text; } }
         public List<string> Children { get { return _children; } }
-        public List<DialogueClue> DialogueClues { get { return _dialogueClues; } }
+        public List<Clue> Clues { get { return _clues; } }
         public bool IsCinematicNode { get { return _isCinematicNode; } }
         public VideoClip VideoClip { get { return _videoClip; } }
 
@@ -67,35 +67,11 @@ namespace NoName
         public string OnEnterAnimation => _onEnterAnimation;
         public string OnExitAnimation => _onExitAnimation;
 
-        [Button]
-        private void AddWeaponClue()
+        public Clue GetClueByLinkID(string linkId)
         {
-            _dialogueClues.Add(new DialogueClue(ClueType.Weapon, Guid.NewGuid()));
-        }
-
-        [Button]
-        private void AddVictimClue()
-        {
-            _dialogueClues.Add(new DialogueClue(ClueType.Victim, Guid.NewGuid()));
-        }
-
-        [Button]
-        private void AddTimeClue()
-        {
-            _dialogueClues.Add(new DialogueClue(ClueType.Time, Guid.NewGuid()));
-        }
-
-        [Button]
-        private void AddCulpritClue()
-        {
-            _dialogueClues.Add(new DialogueClue(ClueType.Culprit, Guid.NewGuid()));
-        }
-
-        public DialogueClue GetDialogueClueByID(string id)
-        {
-            foreach (var clue in _dialogueClues)
+            foreach (var clue in _clues)
             {
-                if (clue.Id.Equals(id))
+                if (clue.LinkId.Equals(linkId))
                 {
                     return clue;
                 }
