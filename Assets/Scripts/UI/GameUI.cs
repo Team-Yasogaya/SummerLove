@@ -19,6 +19,7 @@ namespace NoName
         [SerializeField] DialogueLibraryUI _dialogueLibraryUI;
         [SerializeField] InventoryUI _inventoryUI;
         [SerializeField] VideoPlayerUI _videoPlayerUI;
+        [SerializeField] MultichoiceModalUI _multichoiceModalUI;
 
         [Header("Transitions")]
         [SerializeField] TransitionUI _deductionTimeTransition;
@@ -31,6 +32,7 @@ namespace NoName
         public static DialogueLibraryUI DialogueLibrary { get { return Instance._dialogueLibraryUI; } }
         public static InventoryUI Inventory { get { return Instance._inventoryUI; } }
         public static VideoPlayerUI VideoPlayer { get { return Instance._videoPlayerUI; } } 
+        public static MultichoiceModalUI MultichoiceModal { get { return Instance._multichoiceModalUI; } }
         public static List<BaseMenuUI> MenuStack { get { return Instance._menuStack; } }
 
         private List<BaseMenuUI> _menuStack;

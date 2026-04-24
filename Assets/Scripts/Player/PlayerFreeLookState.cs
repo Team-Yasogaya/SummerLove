@@ -73,7 +73,7 @@ namespace NoName
         {
             InputManager.Instance.ResetInteract();
 
-            Collider[] collisions = Physics.OverlapSphere(_playerStateMachine.transform.position, _playerStateMachine.InteractionRange);
+            Collider[] collisions = Physics.OverlapSphere(_playerStateMachine.transform.position + Vector3.up * 4f, _playerStateMachine.InteractionRange);
 
             closestDistance = Mathf.Infinity;
             closestInteractable = null;

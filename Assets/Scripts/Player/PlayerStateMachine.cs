@@ -104,7 +104,7 @@ namespace NoName
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, _interactionRange);
+            Gizmos.DrawWireSphere(transform.position + Vector3.up * 4f, _interactionRange);
         }
 #endif
     }

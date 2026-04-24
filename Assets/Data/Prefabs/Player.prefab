@@ -93,7 +93,7 @@ MonoBehaviour:
   _sprintSpeed: 20
   _rotationSpeed: 120
   _animationDampTime: 0.1
-  _interactionRange: 10
+  _interactionRange: 3.06
   _cameraTarget: {fileID: 8157439462563172263}
 --- !u!114 &8157439462233887167
 MonoBehaviour:
