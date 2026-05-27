@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f45c4e333e7f2e49b5a28b4201a9669, type: 3}
+  m_Name: Taste Like Venom
+  m_EditorClassIdentifier: 
+  <TrackName>k__BackingField: Taste Like Venom
+  <Author>k__BackingField: GUNSHIP
+  <AudioID>k__BackingField: 
+  <Clip>k__BackingField: {fileID: 8300000, guid: fe7f0a0309c1f9442b6b8a0882a07a4f, type: 3}
+  <DefaultVolume>k__BackingField: 1
+  <DefaultPitch>k__BackingField: 1
+  <Loop>k__BackingField: 0

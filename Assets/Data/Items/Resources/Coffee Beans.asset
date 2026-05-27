@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aed9a64f33271e4a99df3deadd3a417, type: 3}
+  m_Name: Coffee Beans
+  m_EditorClassIdentifier: 
+  _id: dad7537c-dfb6-4a4f-8580-f16d7da843ff
+  _name: Coffee Beans
+  _description: A bunch of low-quality coffee beans.
+  _itemIcon: {fileID: 21300000, guid: b079047e03b72134b86c11b8080e7dbc, type: 3}
+  _isStackable: 0
+  _isCombinable: 1
+  _complementaryItem: {fileID: 11400000, guid: 3deaf69c4b5f2244abce4e46516e28df, type: 2}
+  _resultingItem: {fileID: 11400000, guid: dee3803cceabbf149a1cac440dfad567, type: 2}
+  _resultingItemQuantity: 1

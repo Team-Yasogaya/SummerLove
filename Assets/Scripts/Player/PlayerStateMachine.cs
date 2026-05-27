@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameDevTV.Saving;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace NoName
 {
-    public class PlayerStateMachine : StateMachine
+    public class PlayerStateMachine : StateMachine, IJsonSaveable
     {
         [Header("Character Parameters")]
         [SerializeField] private float _runningSpeed;
         [SerializeField] private float _walkingSpeed;
         [SerializeField] private float _sprintSpeed;
-        [SerializeField] private float _rotationSmoothTime = .3f;
+        [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _animationDampTime = .1f;
         [SerializeField] private float _interactionRange;
 
@@ -27,7 +29,7 @@ namespace NoName
         public float RunningSpeed { get { return _runningSpeed; } }
         public float WalkingSpeed { get { return _walkingSpeed; } }
         public float SprintSpeed { get { return _sprintSpeed; } }
-        public float RotationSmoothTime { get { return _rotationSmoothTime; } }
+        public float RotationSpeed { get { return _rotationSpeed; } }
         public float InteractionRange { get { return _interactionRange; } }
         public Transform CameraTarget { get { return _cameraTarget; } }
 
@@ -77,11 +79,32 @@ namespace NoName
             }
         }
 
+        public JToken CaptureAsJToken()
+        {
+            JObject state = new JObject();
+            IDictionary<string, JToken> stateDict = state;
+            stateDict.Add("position", new JArray(transform.position.x, transform.position.y, transform.position.z));
+            stateDict.Add("rotation", new JArray(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w));
+            return state;
+        }
+
+        public void RestoreFromJToken(JToken s)
+        {
+            JObject state = s.ToObject<JObject>();
+            JArray position = state["position"].ToObject<JArray>();
+            JArray rotation = state["rotation"].ToObject<JArray>();
+
+            Vector3 pos = new(position[0].ToObject<float>(), position[1].ToObject<float>(), position[2].ToObject<float>());
+            Quaternion rot = new(rotation[0].ToObject<float>(), rotation[1].ToObject<float>(), rotation[2].ToObject<float>(), rotation[3].ToObject<float>());
+
+            transform.SetPositionAndRotation(pos, rot);
+        }
+
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, _interactionRange);
+            Gizmos.DrawWireSphere(transform.position + Vector3.up * 4f, _interactionRange);
         }
 #endif
     }
